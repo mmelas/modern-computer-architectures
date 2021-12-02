@@ -1,0 +1,48 @@
+Procedure: max::
+ Trace    IPC Cycles   Oper   Copy    Nop
+-----------------------------------------
+     1   1.00      3      3      0      0
+     2   2.00      1      2      0      0
+Operations   = 5
+Instructions = 4
+Reg. moves   = 0
+Nops         = 0
+Avg ILP = 1.25
+Procedure: min::
+ Trace    IPC Cycles   Oper   Copy    Nop
+-----------------------------------------
+     1   1.00      3      3      0      0
+     2   2.00      1      2      0      0
+Operations   = 5
+Instructions = 4
+Reg. moves   = 0
+Nops         = 0
+Avg ILP = 1.25
+Procedure: NOP::
+ Trace    IPC Cycles   Oper   Copy    Nop
+-----------------------------------------
+     1   1.00      2      2      0      0
+Operations   = 2
+Instructions = 2
+Reg. moves   = 0
+Nops         = 0
+Avg ILP = 1
+Procedure: main::
+ Trace    IPC Cycles   Oper   Copy    Nop
+-----------------------------------------
+    13   1.67      3      5      0      0
+     7   9.50      4     38      0      0
+    11   3.00      1      3      0      0
+     8   2.50      2      5      0      0
+     5   5.00      2     10      0      0
+     3   5.00      3     15      0      0
+     1  10.85     13    141      0      1
+     4   4.50      2      9      0      0
+     6   2.83      6     17      0      0
+     9   4.00      1      4      0      0
+    12   1.25      4      5      0      1
+Operations   = 252
+Instructions = 41
+Reg. moves   = 0
+Nops         = 2
+Avg ILP = 6.14634

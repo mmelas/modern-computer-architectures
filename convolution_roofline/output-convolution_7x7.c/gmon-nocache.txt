@@ -1,0 +1,264 @@
+Flat profile:
+
+Each sample counts as 1e-06 1e+02 sec.
+  %   cumulative   self              self     total           
+ time 1e+02 sec  1e+02 se    calls  ms/call  ms/call  name    
+ 93.60      0.06     0.06        1    56.98    56.98  __vex_main
+  6.24      0.06     0.00                             NOP
+  0.03      0.06     0.00        5     0.00     0.01  fflush
+  0.02      0.06     0.00        1     0.01     0.07  __sfvwrite
+  0.01      0.06     0.00        2     0.00     0.00  __wrap_memchr
+  0.01      0.06     0.00        1     0.01     0.01  __wrap_strlen
+  0.01      0.06     0.00        1     0.01     0.02  __smakebuf
+  0.01      0.06     0.00        1     0.01     0.01  _malloc_r
+  0.01      0.06     0.00        3     0.00     0.00  _sbrk_r
+  0.01      0.06     0.00        3     0.00     0.00  std
+  0.01      0.06     0.00        2     0.00     0.00  __swrite
+  0.01      0.06     0.00        2     0.00     0.00  _bcopy
+  0.01      0.06     0.00        1     0.00     0.03  __swsetup
+  0.01      0.06     0.00        1     0.00     0.02  _fwalk
+  0.01      0.06     0.00        1     0.00     0.01  _morecore_r
+  0.00      0.06     0.00        2     0.00     0.00  _write_r
+  0.00      0.06     0.00        2     0.00     0.00  __wrap_memmove
+  0.00      0.06     0.00        1     0.00     0.01  __sinit
+  0.00      0.06     0.00        1     0.00     0.07  _puts_r
+  0.00      0.06     0.00        1     0.00     0.02  exit
+  0.00      0.06     0.00        1     0.00     0.02  _cleanup_r
+  0.00      0.06     0.00        1     0.00     0.00  _fstat_r
+  0.00      0.06     0.00        1     0.00     0.08  puts
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 32 byte(s) for 0.00% of 0.06 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     93.6    0.00    0.06                 main [1]
+                0.06    0.00       1/1           __vex_main [2]
+                0.00    0.00       1/1           exit [9]
+-----------------------------------------------
+                0.06    0.00       1/1           main [1]
+[2]     93.6    0.06    0.00       1         __vex_main [2]
+-----------------------------------------------
+                                   1             NOP [3]
+[3]      6.4    0.00    0.00       0+1       NOP [3]
+                0.00    0.00       1/1           puts [4]
+                                   1             NOP [3]
+-----------------------------------------------
+                0.00    0.00       1/1           NOP [3]
+[4]      0.1    0.00    0.00       1         puts [4]
+                0.00    0.00       1/1           _puts_r [5]
+-----------------------------------------------
+                0.00    0.00       1/1           puts [4]
+[5]      0.1    0.00    0.00       1         _puts_r [5]
+                0.00    0.00       1/1           __sfvwrite [6]
+                0.00    0.00       1/1           __wrap_strlen [19]
+-----------------------------------------------
+                0.00    0.00       1/1           _puts_r [5]
+[6]      0.1    0.00    0.00       1         __sfvwrite [6]
+                0.00    0.00       1/1           __swsetup [7]
+                0.00    0.00       2/5           fflush [8]
+                0.00    0.00       2/2           __wrap_memchr [14]
+                0.00    0.00       2/2           __wrap_memmove [17]
+-----------------------------------------------
+                0.00    0.00       1/1           __sfvwrite [6]
+[7]      0.0    0.00    0.00       1         __swsetup [7]
+                0.00    0.00       1/1           __smakebuf [12]
+                0.00    0.00       1/1           __sinit [18]
+-----------------------------------------------
+                0.00    0.00       2/5           __sfvwrite [6]
+                0.00    0.00       3/5           _fwalk [11]
+[8]      0.0    0.00    0.00       5         fflush [8]
+                0.00    0.00       2/2           __swrite [16]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[9]      0.0    0.00    0.00       1         exit [9]
+                0.00    0.00       1/1           _cleanup_r [10]
+-----------------------------------------------
+                0.00    0.00       1/1           exit [9]
+[10]     0.0    0.00    0.00       1         _cleanup_r [10]
+                0.00    0.00       1/1           _fwalk [11]
+-----------------------------------------------
+                0.00    0.00       1/1           _cleanup_r [10]
+[11]     0.0    0.00    0.00       1         _fwalk [11]
+                0.00    0.00       3/5           fflush [8]
+-----------------------------------------------
+                0.00    0.00       1/1           __swsetup [7]
+[12]     0.0    0.00    0.00       1         __smakebuf [12]
+                0.00    0.00       1/1           _malloc_r [13]
+                0.00    0.00       1/1           _fstat_r [24]
+-----------------------------------------------
+                0.00    0.00       1/1           __smakebuf [12]
+[13]     0.0    0.00    0.00       1         _malloc_r [13]
+                0.00    0.00       1/1           _morecore_r [15]
+-----------------------------------------------
+                0.00    0.00       2/2           __sfvwrite [6]
+[14]     0.0    0.00    0.00       2         __wrap_memchr [14]
+-----------------------------------------------
+                0.00    0.00       1/1           _malloc_r [13]
+[15]     0.0    0.00    0.00       1         _morecore_r [15]
+                0.00    0.00       3/3           _sbrk_r [21]
+-----------------------------------------------
+                0.00    0.00       2/2           fflush [8]
+[16]     0.0    0.00    0.00       2         __swrite [16]
+                0.00    0.00       2/2           _write_r [23]
+-----------------------------------------------
+                0.00    0.00       2/2           __sfvwrite [6]
+[17]     0.0    0.00    0.00       2         __wrap_memmove [17]
+                0.00    0.00       2/2           _bcopy [22]
+-----------------------------------------------
+                0.00    0.00       1/1           __swsetup [7]
+[18]     0.0    0.00    0.00       1         __sinit [18]
+                0.00    0.00       3/3           std [20]
+-----------------------------------------------
+                0.00    0.00       1/1           _puts_r [5]
+[19]     0.0    0.00    0.00       1         __wrap_strlen [19]
+-----------------------------------------------
+                0.00    0.00       3/3           __sinit [18]
+[20]     0.0    0.00    0.00       3         std [20]
+-----------------------------------------------
+                0.00    0.00       3/3           _morecore_r [15]
+[21]     0.0    0.00    0.00       3         _sbrk_r [21]
+-----------------------------------------------
+                0.00    0.00       2/2           __wrap_memmove [17]
+[22]     0.0    0.00    0.00       2         _bcopy [22]
+-----------------------------------------------
+                0.00    0.00       2/2           __swrite [16]
+[23]     0.0    0.00    0.00       2         _write_r [23]
+-----------------------------------------------
+                0.00    0.00       1/1           __smakebuf [12]
+[24]     0.0    0.00    0.00       1         _fstat_r [24]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+   [3] NOP                    [17] __wrap_memmove          [5] _puts_r
+   [6] __sfvwrite             [19] __wrap_strlen          [21] _sbrk_r
+  [18] __sinit                [22] _bcopy                 [23] _write_r
+  [12] __smakebuf             [10] _cleanup_r              [9] exit
+  [16] __swrite               [24] _fstat_r                [8] fflush
+   [7] __swsetup              [11] _fwalk                  [4] puts
+   [2] __vex_main             [13] _malloc_r              [20] std
+  [14] __wrap_memchr          [15] _morecore_r

@@ -1,0 +1,118 @@
+Total Cycles:                              833272 (8332.72 msec)
+Execution Cycles:                          743113 ( 89.18%)
+Stall Cycles:                               90159 ( 10.82%)
+Nops:                                       47299 (  5.68%)
+Executed operations:                      7306356
+
+Executed branches:                         129338 (  1.77% ops)(17.40% insts)
+Not taken branches:                         51156 (  0.70% ops)( 6.88% insts)(39.55% br)
+Taken branches:                             78182 (  1.07% ops)(10.52% insts)(60.45% br)
+  Taken uncond branches:                    51147 (  0.70% ops)( 6.88% insts)(39.55% br)
+  Taken cond branches:                      27035 (  0.37% ops)( 3.64% insts)(20.90% br)
+Size of Loaded Code:                         9472 Bytes
+
+Instruction Memory Operations:
+  Accesses:                               1174103
+    Hits (Hit Rate):                      1173994 ( 99.99%)
+    Misses (Miss Rate):                       109 (  0.01%)
+Instruction Memory Stall Cycles
+  Total (in cycles):                         1693 (100.00%)
+    Due to Misses:                           1635 ( 96.57%)
+    Due to Bus Conflicts:                      58 (  3.43%)
+
+Data Memory Operations:                     Cache          
+  Accesses:                                384806 (100.00%)
+    Hits (Hit Rate):                       384277 ( 99.86%)
+    Misses (Miss Rate):                       529 (  0.14%)
+  Write Backs (% of Misses):                    3 (  0.57%)
+Data Memory Stall Cycles
+  Total (in cycles):                        10284 (100.00%)
+    Due to Misses:                           7406 ( 72.01%)
+    Due to Bus Conflicts:                    2878 ( 27.99%)
+
+Prefetches:                                 Cache          
+  Accesses:                                 98069 (100.00%)
+    Misses:                                   744 (  0.76%)
+      Target Used too early:                    6 (  0.01%)
+  Write Backs (% of Pft Misses):                3 (  0.40%)
+
+Percentage Bus Bandwidth Consumed:           2.34%
+
+
+Avg. IPC (no stalls):   9.83
+Avg. IPC (with stalls): 8.77
+
+  cycle counter =       743113
+  total ops     =      7306356
+   width[ 0] =           15
+   width[ 1] =        34873
+   width[ 2] =        80986
+   width[ 3] =          583
+   width[ 4] =        50639
+   width[ 7] =        74008
+   width[ 9] =        50518
+   width[10] =          512
+   width[11] =        47096
+   width[12] =        74008
+   width[13] =        47096
+   width[14] =        47096
+   width[16] =       141288
+   width[21] =        47096
+
+Flat profile (cycles)
+       Total   Total%        Insts   Insts%       Dcache  Dcache%       Icache  Icache% Function
+      830001    99.61       741919    99.84         6916     0.92          255     0.03 __vex_main
+         482     0.06          164     0.02           70     0.01          225     0.03 __sfvwrite
+         350     0.04          230     0.03           -0    -0.00           90     0.01 fflush
+         228     0.03           56     0.01           28     0.00          120     0.02 __smakebuf
+         228     0.03           54     0.01           14     0.00          150     0.02 _bcopy
+         203     0.02           64     0.01           28     0.00          105     0.01 _malloc_r
+         176     0.02           45     0.01           98     0.01           30     0.00 std
+         170     0.02           49     0.01           42     0.01           75     0.01 __swsetup
+         151     0.02           96     0.01            0     0.00           45     0.01 __wrap_memchr
+         146     0.02           49     0.01           14     0.00           75     0.01 _morecore_r
+         137     0.02           70     0.01           28     0.00           30     0.00 __wrap_strlen
+         114     0.01           21     0.00           14     0.00           60     0.01 __sinit
+         109     0.01           18     0.00           42     0.01           45     0.01 _fstat_r
+         109     0.01           54     0.01           -0    -0.00           45     0.01 _fwalk
+         107     0.01           40     0.01           14     0.00           45     0.01 _write_r
+         106     0.01           27     0.00           14     0.00           60     0.01 exit
+         104     0.01           48     0.01           14     0.00           30     0.00 _sbrk_r
+         100     0.01           25     0.00           42     0.01           30     0.00 _puts_r
+          97     0.01           44     0.01            0     0.00           45     0.01 __swrite
+          69     0.01            9     0.00           28     0.00           30     0.00 puts
+          58     0.01           22     0.00            0     0.00           30     0.00 __wrap_memmove
+          24     0.00            7     0.00            0     0.00           15     0.00 _cleanup_r
+           3     0.00            2     0.00            0     0.00            0     0.00 NOP
+           0             0            -0  (others not profiled)
+
+Simulation time  =     0.0739 s
+Simulation speed =    98.9337 MOPS
+
+
+ta_init using <run_dir>/vex.cfg
+
+	CoreCkFreq           0.1
+	BusCkFreq            0.1
+	lg2CacheSize         15	# (CacheSize            = 32768)
+	lg2Sets              2	# (Sets                 = 4)
+	lg2LineSize          5	# (LineSize             = 32)
+	MissPenalty          14
+	WBPenalty            11
+	lg2StrSize           9	# (StrSize              = 512)
+	lg2StrSets           4	# (StrSets              = 16)
+	lg2StrLineSize       5	# (StrLineSize          = 32)
+	StrMissPenalty       14
+	StrWBPenalty         11
+	lg2ICacheSize        15	# (ICacheSize           = 32768)
+	lg2ICacheSets        0	# (ICacheSets           = 1)
+	lg2ICacheLineSize    6	# (ICacheLineSize       = 64)
+	ICachePenalty        15
+	NumCaches            1
+	BranchStall          1
+	StreamEnable         FALSE
+	PrefetchEnable       TRUE
+	LockEnable           FALSE
+	ProfGranularity      AUTO
+
+
