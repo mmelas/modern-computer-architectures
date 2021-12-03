@@ -5,10 +5,15 @@ from collections import defaultdict
 from simanneal import Annealer
 import subprocess
 import time
+from find_max_vals import FindMaxValues
 
 class FindOptimizedConfiguration(Annealer):
 
+
 	def __init__(self, state):
+		self.max_vals = defaultdict(list)
+		self.max_vals[16] = [2, 11, 1, 11, 63, 8]
+		self.findm = FindMaxValues([32, 32, 32, 32, 32, 32, 32, 1024, 64])
 		super(FindOptimizedConfiguration, self).__init__(state)
 
 	def move(self):
@@ -20,13 +25,26 @@ class FindOptimizedConfiguration(Annealer):
 		rand_ind = random.randint(0, 8)
 
 		new_states = [random.randint(2, 32), random.randint(1, 32), random.randint(1, 32), random.randint(1, 32), random.randint(2, 32), random.randint(1, 32), random.randint(1, 32), random.randint(32, 1024), random.randint(8, 64)]
-		
-#		self.state[0], self.state[1], self.state[2],\
-#		self.state[3], self.state[4], self.state[5],\
-#		self.state[6], self.state[7], self.state[8] = \
-#		new_width, new_memloads, new_memst, new_mempft, new_alus,\
-#		new_muls, new_memunits, new_regs, new_cregs
+			
 		self.state[rand_ind] = new_states[rand_ind]
+		if rand_ind == 0 :
+			if len(self.max_vals[new_states[0]]) == 0 :
+				self.findm.set_width(new_states[0])
+				indices = [1, 2, 3, 6, 7, 8]
+				mins = [self.findm.fm(x) for x in indices]	
+				for x in indices : 
+					self.max_vals[new_states[0]].append(x)
+				
+		self.state[1] = random.randint(1, self.max_vals[self.state[0]][0])
+		self.state[2] = random.randint(1, self.max_vals[self.state[0]][1])
+		self.state[3] = random.randint(1, self.max_vals[self.state[0]][2])
+		self.state[6] = random.randint(1, self.max_vals[self.state[0]][3])
+		self.state[7] = random.randint(32, self.max_vals[self.state[0]][4])
+		self.state[8] = random.randint(8, self.max_vals[self.state[0]][5])
+		if self.state[4] > self.state[0]:
+			self.state[4] = random.randint(2, self.state[0])
+		if self.state[5] > self.state[0]:
+			self.state[5] = random.randint(1, self.state[0])
 
 		return self.energy() - initial_energy
 
@@ -69,25 +87,25 @@ class FindOptimizedConfiguration(Annealer):
 	
 		norm_exec_cycles = ((exec_cycles - 56522.98) / (28749792 - 56522.98)) * 100
 		norm_area = ((area - 56522.98) / (28749792 - 56522.98)) * 100
-		norm_product = norm_exec_cycles * norm_area
+		norm_product = (1.5 * norm_exec_cycles) * norm_area
 
-		#print(str(norm_product) + " " + str(area) + " " + str(exec_cycles))
 		return norm_product
 
 
 if __name__ == '__main__':
 	
 	#if we rerun it maybe we want a different initial state
-	init_state = [32, 32, 32, 32, 32, 32, 32, 1024, 64]
+	init_state = [16, 16, 16, 16, 16, 16, 16, 512, 32]
 	
 	ca = FindOptimizedConfiguration(init_state)
-	ca.set_schedule(ca.auto(minutes=0.2, steps=1))
-#	ca.set_schedule({"updates":50000, "tmax":25000, "tmin":2.5, "steps":50000})
+#	ca.set_schedule(ca.auto(minutes=0.2, steps=1))
+	ca.set_schedule({"updates":1, "tmax":25000, "tmin":2.5, "steps":1})
 	ca.copy_strategy = "slice"
 	state, e = ca.anneal()
 
-	print(state)
 	area = state[4] * 3273 + state[5] * 40614 + state[1] * 1500 + state[2] * 1500 + ((26388/64) * state[7] * (state[0] / 4) ** 2) + ((258/8) * state[8] * (state[0] / 4)**2) + (state[1] + state[2] + state[3]) * 1000
 	norm_area = ((area - 56522.98) / (28749792 - 56522.98)) * 100
-	exec_cycles = ((e / norm_area) / 100) * (28749792 - 56522.98) + 56522.98
+	exec_cycles = ((e / norm_area) / 150) * (28749792 - 56522.98) + 56522.98
+
+	print(state)
 	print("Energy : " + str(e) + " area : " + str(area) + " exec_cycles : " + str(exec_cycles))
