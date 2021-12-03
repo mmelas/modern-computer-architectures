@@ -1,16 +1,16 @@
-RES: IssueWidth 6
+RES: IssueWidth 31
 RES: MemLoad 3
-RES: MemStore 5
-RES: MemPft 14
+RES: MemStore 4
+RES: MemPft 1
 #***Clusters*** 1
 RES: IssueWidth.0 32 
-RES: Alu.0 7
-RES: Mpy.0 1
-RES: Memory.0 2
+RES: Alu.0 14
+RES: Mpy.0 15
+RES: Memory.0 7
 RES: CopySrc.0 0 
 RES: CopyDst.0 0 
-REG: $r0 52
-REG: $b0 23
+REG: $r0 45
+REG: $b0 8
 DEL: AluR.0 0 
 DEL: Alu.0 0
 DEL: CmpBr.0 0

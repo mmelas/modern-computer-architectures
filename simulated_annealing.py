@@ -14,6 +14,10 @@ class FindOptimizedConfiguration(Annealer):
 		self.max_vals = defaultdict(list)
 		self.max_vals[16] = [2, 11, 1, 11, 63, 8]
 		self.findm = FindMaxValues([32, 32, 32, 32, 32, 32, 32, 1024, 64])
+		self.global_states = []
+		self.global_areas = []
+		self.global_cycles = []
+		self.global_energies = []
 		super(FindOptimizedConfiguration, self).__init__(state)
 
 	def move(self):
@@ -32,7 +36,7 @@ class FindOptimizedConfiguration(Annealer):
 				self.findm.set_width(new_states[0])
 				indices = [1, 2, 3, 6, 7, 8]
 				mins = [self.findm.fm(x) for x in indices]	
-				for x in indices : 
+				for x in mins : 
 					self.max_vals[new_states[0]].append(x)
 				
 		self.state[1] = random.randint(1, self.max_vals[self.state[0]][0])
@@ -89,8 +93,17 @@ class FindOptimizedConfiguration(Annealer):
 		norm_area = ((area - 56522.98) / (28749792 - 56522.98)) * 100
 		norm_product = (1.5 * norm_exec_cycles) * norm_area
 
+		self.global_states.append(self.state.copy())
+		self.global_areas.append(area)
+		self.global_cycles.append(exec_cycles)
+		self.global_energies.append(norm_product)
+
 		return norm_product
 
+	def write_output(self) :
+		with open("to_plot.txt", 'w') as f :
+			for i in range(0, len(self.global_areas), 2):
+				f.write("State : " + str(self.global_states[i]) + " Area : " + str(self.global_areas[i]) + " Cycles : " + str(self.global_cycles[i]) + " Energy : " + str(self.global_energies[i]) + "\n")
 
 if __name__ == '__main__':
 	
@@ -99,13 +112,15 @@ if __name__ == '__main__':
 	
 	ca = FindOptimizedConfiguration(init_state)
 #	ca.set_schedule(ca.auto(minutes=0.2, steps=1))
-	ca.set_schedule({"updates":1, "tmax":25000, "tmin":2.5, "steps":1})
+	ca.set_schedule({"updates":50, "tmax":25000, "tmin":2.5, "steps":50})
 	ca.copy_strategy = "slice"
 	state, e = ca.anneal()
 
 	area = state[4] * 3273 + state[5] * 40614 + state[1] * 1500 + state[2] * 1500 + ((26388/64) * state[7] * (state[0] / 4) ** 2) + ((258/8) * state[8] * (state[0] / 4)**2) + (state[1] + state[2] + state[3]) * 1000
 	norm_area = ((area - 56522.98) / (28749792 - 56522.98)) * 100
 	exec_cycles = ((e / norm_area) / 150) * (28749792 - 56522.98) + 56522.98
+
+	ca.write_output()
 
 	print(state)
 	print("Energy : " + str(e) + " area : " + str(area) + " exec_cycles : " + str(exec_cycles))

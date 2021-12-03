@@ -87,18 +87,26 @@ NOP::
  ## Begin main
 .section .text
 .proc
-.entry caller, sp=$r0.1, rl=$l0.0, asize=-32, arg()
+.entry caller, sp=$r0.1, rl=$l0.0, asize=-64, arg()
 main::
 .trace 11
-	c0    add $r0.1 = $r0.1, (-0x20)
+	c0    add $r0.1 = $r0.1, (-0x40)
 ;;								## 0
-.call NOP, caller, arg(), ret($r0.3:s32)
-	c0    call $l0.0 = NOP   ## bblock 0, line 64,  raddr(NOP)(P32)
+	c0    stw 0x24[$r0.1] = $r0.57  ## spill ## t132
+	c0    stw 0x28[$r0.1] = $r0.58  ## spill ## t133
+	c0    stw 0x2c[$r0.1] = $r0.59  ## spill ## t134
 	c0    stw 0x10[$r0.1] = $l0.0  ## spill ## t128
 ;;								## 1
+.call NOP, caller, arg(), ret($r0.3:s32)
+	c0    call $l0.0 = NOP   ## bblock 0, line 64,  raddr(NOP)(P32)
+	c0    stw 0x30[$r0.1] = $r0.60  ## spill ## t135
+	c0    stw 0x34[$r0.1] = $r0.61  ## spill ## t136
+	c0    stw 0x38[$r0.1] = $r0.62  ## spill ## t137
+	c0    stw 0x3c[$r0.1] = $r0.63  ## spill ## t138
+;;								## 2
 	c0    mov $r0.2 = (~0xfff)   ## bblock 1, line 0,  t593,  (~0xfff)(I32)
 	c0    mov $r0.3 = (conv7_result + 0)   ## bblock 1, line 0,  t592,  addr(conv7_result?1.0)(P32)
-;;								## 2
+;;								## 3
 .trace 3
 L2?3:
 	c0    cmplt $b0.0 = $r0.2, $r0.0   ## bblock 2, line 89,  t1022(I1),  t593,  0(SI32)
@@ -111,46 +119,52 @@ L2?3:
 	c0    stw 4[$r0.3] = $r0.0   ## bblock 35, line 90-1, t592, 0(SI32)
 	c0    stw 8[$r0.3] = $r0.0   ## bblock 35, line 90-2, t592, 0(SI32)
 	c0    stw 12[$r0.3] = $r0.0   ## bblock 35, line 90-3, t592, 0(SI32)
+;;								## 2
 	c0    stw 16[$r0.3] = $r0.0   ## bblock 35, line 90-4, t592, 0(SI32)
 	c0    stw 20[$r0.3] = $r0.0   ## bblock 35, line 90-5, t592, 0(SI32)
 	c0    stw 24[$r0.3] = $r0.0   ## bblock 35, line 90-6, t592, 0(SI32)
 	c0    stw 28[$r0.3] = $r0.0   ## bblock 35, line 90-7, t592, 0(SI32)
+;;								## 3
 	c0    stw 32[$r0.3] = $r0.0   ## bblock 35, line 90-8, t592, 0(SI32)
-;;								## 2
 	c0    stw 36[$r0.3] = $r0.0   ## bblock 35, line 90-9, t592, 0(SI32)
 	c0    stw 40[$r0.3] = $r0.0   ## bblock 35, line 90-10, t592, 0(SI32)
 	c0    stw 44[$r0.3] = $r0.0   ## bblock 35, line 90-11, t592, 0(SI32)
+;;								## 4
 	c0    stw 48[$r0.3] = $r0.0   ## bblock 35, line 90-12, t592, 0(SI32)
 	c0    stw 52[$r0.3] = $r0.0   ## bblock 35, line 90-13, t592, 0(SI32)
 	c0    stw 56[$r0.3] = $r0.0   ## bblock 35, line 90-14, t592, 0(SI32)
 	c0    stw 60[$r0.3] = $r0.0   ## bblock 35, line 90-15, t592, 0(SI32)
+;;								## 5
 	c0    stw 64[$r0.3] = $r0.0   ## bblock 35, line 90-16, t592, 0(SI32)
 	c0    stw 68[$r0.3] = $r0.0   ## bblock 35, line 90-17, t592, 0(SI32)
-;;								## 3
 	c0    stw 72[$r0.3] = $r0.0   ## bblock 35, line 90-18, t592, 0(SI32)
 	c0    stw 76[$r0.3] = $r0.0   ## bblock 35, line 90-19, t592, 0(SI32)
+;;								## 6
 	c0    stw 80[$r0.3] = $r0.0   ## bblock 35, line 90-20, t592, 0(SI32)
 	c0    stw 84[$r0.3] = $r0.0   ## bblock 35, line 90-21, t592, 0(SI32)
 	c0    stw 88[$r0.3] = $r0.0   ## bblock 35, line 90-22, t592, 0(SI32)
 	c0    stw 92[$r0.3] = $r0.0   ## bblock 35, line 90-23, t592, 0(SI32)
+;;								## 7
 	c0    stw 96[$r0.3] = $r0.0   ## bblock 35, line 90-24, t592, 0(SI32)
 	c0    stw 100[$r0.3] = $r0.0   ## bblock 35, line 90-25, t592, 0(SI32)
 	c0    stw 104[$r0.3] = $r0.0   ## bblock 35, line 90-26, t592, 0(SI32)
-;;								## 4
 	c0    stw 108[$r0.3] = $r0.0   ## bblock 35, line 90-27, t592, 0(SI32)
+;;								## 8
 	c0    stw 112[$r0.3] = $r0.0   ## bblock 35, line 90-28, t592, 0(SI32)
 	c0    stw 116[$r0.3] = $r0.0   ## bblock 35, line 90-29, t592, 0(SI32)
 	c0    stw 120[$r0.3] = $r0.0   ## bblock 35, line 90-30, t592, 0(SI32)
 	c0    stw 124[$r0.3] = $r0.0   ## bblock 35, line 90-31, t592, 0(SI32)
 	c0    add $r0.3 = $r0.3, 128   ## bblock 35, line 0,  t592,  t592,  128(I32)
 	c0    goto L2?3 ## goto
-;;								## 5
+;;								## 9
 .trace 10
 L3?3:
 	c0    mov $r0.8 = $r0.0   ## bblock 3, line 0,  t469,  0(I32)
 	c0    mov $r0.3 = $r0.0   ## bblock 3, line 0,  t468,  0(I32)
-	c0    mov $r0.45 = ((conv7_result + 0) + 1012)   ## bblock 3, line 0,  t473,  (addr(conv7_result?1.0)(P32) + 0x3f4(I32))(P32)
+	c0    mov $r0.2 = ((conv7_result + 0) + 1012)   ## bblock 3, line 0,  t473,  (addr(conv7_result?1.0)(P32) + 0x3f4(I32))(P32)
 ;;								## 0
+	c0    stw 0x20[$r0.1] = $r0.2  ## spill ## t473
+;;								## 1
 .trace 7
 L4?3:
 	c0    cmplt $b0.0 = $r0.3, 58   ## bblock 4, line 98,  t1023(I1),  t468,  58(SI32)
@@ -165,11 +179,11 @@ L6?3:
 	c0    mov $r0.2 = (~0x6)   ## [spec] bblock 10, line 0,  t429,  (~0x6)(I32)
 	c0    mov $r0.6 = $r0.0   ## [spec] bblock 10, line 0,  t427,  0(I32)
 	c0    mov $r0.5 = $r0.7   ## [spec] bblock 10, line 0,  t428,  t442
-	c0    mov $r0.18 = $r0.0   ## [spec] bblock 10, line 102,  t153,  0(SI32)
-	c0    mov $r0.17 = $r0.0   ## [spec] bblock 10, line 102,  t152,  0(SI32)
-	c0    mov $r0.19 = $r0.0   ## [spec] bblock 10, line 102,  t151,  0(SI32)
-	c0    mov $r0.43 = $r0.4   ## t443
-	c0    mov $r0.44 = $r0.7   ## t442
+	c0    mov $r0.17 = $r0.0   ## [spec] bblock 10, line 102,  t153,  0(SI32)
+	c0    mov $r0.16 = $r0.0   ## [spec] bblock 10, line 102,  t152,  0(SI32)
+	c0    mov $r0.18 = $r0.0   ## [spec] bblock 10, line 102,  t151,  0(SI32)
+	c0    stw 0x18[$r0.1] = $r0.4  ## spill ## t443
+	c0    stw 0x1c[$r0.1] = $r0.7  ## spill ## t442
 ;;								## 0
 	c0    brf $b0.0, L7?3   ## bblock 8, line 100,  t1024(I1)
 ;;								## 1
@@ -183,316 +197,324 @@ L8?3:
 	c0    add $r0.13 = $r0.3, 3   ## [spec] bblock 31, line 115-3,  t355,  t468,  3(SI32)
 	c0    sh2add $r0.14 = $r0.6, ((filter7x7 + 0) + 12)   ## [spec] bblock 31, line 117-3,  t1076,  t427,  (addr(filter7x7?1.0)(P32) + 0xc(I32))(P32)
 	c0    add $r0.15 = $r0.3, 5   ## [spec] bblock 31, line 115-5,  t309,  t468,  5(SI32)
-	c0    sh2add $r0.16 = $r0.6, ((filter7x7 + 0) + 20)   ## [spec] bblock 31, line 117-5,  t1108,  t427,  (addr(filter7x7?1.0)(P32) + 0x14(I32))(P32)
 	c0    add $r0.4 = $r0.3, 6   ## [spec] bblock 31, line 115-6,  t286,  t468,  6(SI32)
 	c0    sh2add $r0.7 = $r0.6, ((filter7x7 + 0) + 24)   ## [spec] bblock 31, line 117-6,  t1124,  t427,  (addr(filter7x7?1.0)(P32) + 0x18(I32))(P32)
 ;;								## 0
-	c0    ldw.d $r0.20 = 0[$r0.10]   ## [spec] bblock 31, line 117, t70, t1028
+	c0    ldw.d $r0.19 = 0[$r0.10]   ## [spec] bblock 31, line 117, t70, t1028
 	c0    sh2add $r0.9 = $r0.9, (conv7_image + 0)   ## [spec] bblock 31, line 117,  t77,  t74,  addr(conv7_image?1.0)(P32)
+	c0    add $r0.21 = $r0.3, 1   ## [spec] bblock 31, line 115-1,  t401,  t468,  1(SI32)
 	c0    shl $r0.11 = $r0.11, 6   ## [spec] bblock 31, line 117-2,  t381,  t378,  6(I32)
 	c0    ldw.d $r0.12 = 0[$r0.12]   ## [spec] bblock 31, line 117-2, t380, t1060
 	c0    shl $r0.13 = $r0.13, 6   ## [spec] bblock 31, line 117-3,  t358,  t355,  6(I32)
-	c0    ldw.d $r0.14 = 0[$r0.14]   ## [spec] bblock 31, line 117-3, t357, t1076
+	c0    add $r0.22 = $r0.3, 4   ## [spec] bblock 31, line 115-4,  t332,  t468,  4(SI32)
 	c0    shl $r0.15 = $r0.15, 6   ## [spec] bblock 31, line 117-5,  t312,  t309,  6(I32)
-	c0    ldw.d $r0.16 = 0[$r0.16]   ## [spec] bblock 31, line 117-5, t311, t1108
+	c0    sh2add $r0.20 = $r0.6, ((filter7x7 + 0) + 20)   ## [spec] bblock 31, line 117-5,  t1108,  t427,  (addr(filter7x7?1.0)(P32) + 0x14(I32))(P32)
 	c0    shl $r0.4 = $r0.4, 6   ## [spec] bblock 31, line 117-6,  t289,  t286,  6(I32)
 	c0    ldw.d $r0.7 = 0[$r0.7]   ## [spec] bblock 31, line 117-6, t288, t1124
 	c0    brf $b0.0, L9?3   ## bblock 11, line 107,  t1025(I1)
 ;;								## 1
-	c0    ldw $r0.21 = 0[$r0.9]   ## bblock 31, line 117, t78, t77
-	c0    add $r0.22 = $r0.3, 1   ## bblock 31, line 115-1,  t401,  t468,  1(SI32)
-	c0    sh2add $r0.23 = $r0.6, ((filter7x7 + 0) + 4)   ## bblock 31, line 117-1,  t1044,  t427,  (addr(filter7x7?1.0)(P32) + 0x4(I32))(P32)
+	c0    ldw $r0.23 = 0[$r0.9]   ## bblock 31, line 117, t78, t77
+	c0    sh2add $r0.24 = $r0.6, ((filter7x7 + 0) + 4)   ## bblock 31, line 117-1,  t1044,  t427,  (addr(filter7x7?1.0)(P32) + 0x4(I32))(P32)
+	c0    shl $r0.21 = $r0.21, 6   ## bblock 31, line 117-1,  t404,  t401,  6(I32)
 	c0    add $r0.11 = $r0.5, $r0.11   ## bblock 31, line 117-2,  t382,  t428,  t381
 	c0    add $r0.13 = $r0.5, $r0.13   ## bblock 31, line 117-3,  t359,  t428,  t358
-	c0    add $r0.24 = $r0.3, 4   ## bblock 31, line 115-4,  t332,  t468,  4(SI32)
+	c0    ldw $r0.14 = 0[$r0.14]   ## bblock 31, line 117-3, t357, t1076
+	c0    shl $r0.22 = $r0.22, 6   ## bblock 31, line 117-4,  t335,  t332,  6(I32)
 	c0    sh2add $r0.25 = $r0.6, ((filter7x7 + 0) + 16)   ## bblock 31, line 117-4,  t1092,  t427,  (addr(filter7x7?1.0)(P32) + 0x10(I32))(P32)
 	c0    add $r0.15 = $r0.5, $r0.15   ## bblock 31, line 117-5,  t313,  t428,  t312
+	c0    ldw $r0.20 = 0[$r0.20]   ## bblock 31, line 117-5, t311, t1108
 	c0    add $r0.4 = $r0.5, $r0.4   ## bblock 31, line 117-6,  t290,  t428,  t289
-	c0    add $r0.2 = $r0.2, 1   ## bblock 31, line 0,  t429,  t429,  1(I32)
 	c0    add $r0.6 = $r0.6, 7   ## bblock 31, line 0,  t427,  t427,  7(I32)
 ;;								## 2
-	c0    pft 32[$r0.10]   ## bblock 31, line 117,  t1028,  32(I32)
-	c0    pft 32[$r0.9]   ## bblock 31, line 117,  t77,  32(I32)
-	c0    ldw $r0.23 = 0[$r0.23]   ## bblock 31, line 117-1, t403, t1044
-	c0    shl $r0.22 = $r0.22, 6   ## bblock 31, line 117-1,  t404,  t401,  6(I32)
+	c0    ldw $r0.24 = 0[$r0.24]   ## bblock 31, line 117-1, t403, t1044
+	c0    add $r0.21 = $r0.5, $r0.21   ## bblock 31, line 117-1,  t405,  t428,  t404
 	c0    sh2add $r0.11 = $r0.11, (conv7_image + 0)   ## bblock 31, line 117-2,  t384,  t382,  addr(conv7_image?1.0)(P32)
 	c0    sh2add $r0.13 = $r0.13, (conv7_image + 0)   ## bblock 31, line 117-3,  t361,  t359,  addr(conv7_image?1.0)(P32)
-	c0    shl $r0.24 = $r0.24, 6   ## bblock 31, line 117-4,  t335,  t332,  6(I32)
+	c0    add $r0.22 = $r0.5, $r0.22   ## bblock 31, line 117-4,  t336,  t428,  t335
 	c0    ldw $r0.25 = 0[$r0.25]   ## bblock 31, line 117-4, t334, t1092
 	c0    sh2add $r0.15 = $r0.15, (conv7_image + 0)   ## bblock 31, line 117-5,  t315,  t313,  addr(conv7_image?1.0)(P32)
 	c0    sh2add $r0.4 = $r0.4, (conv7_image + 0)   ## bblock 31, line 117-6,  t292,  t290,  addr(conv7_image?1.0)(P32)
+	c0    add $r0.5 = $r0.5, 1   ## bblock 31, line 0,  t428,  t428,  1(I32)
+	c0    add $r0.2 = $r0.2, 1   ## bblock 31, line 0,  t429,  t429,  1(I32)
 ;;								## 3
-	c0    shru $r0.10 = $r0.21, 16   ## bblock 31, line 117,  t43(I16),  t78,  16(SI32)
-	c0    and $r0.21 = $r0.21, 255   ## bblock 31, line 119,  t79,  t78,  255(I32)
-	c0    shru $r0.9 = $r0.21, 8   ## bblock 31, line 118,  t61(I24),  t78,  8(SI32)
-	c0    add $r0.22 = $r0.5, $r0.22   ## bblock 31, line 117-1,  t405,  t428,  t404
+	c0    pft 32[$r0.9]   ## bblock 31, line 117,  t77,  32(I32)
+	c0    shru $r0.27 = $r0.23, 16   ## bblock 31, line 117,  t43(I16),  t78,  16(SI32)
+	c0    and $r0.23 = $r0.23, 255   ## bblock 31, line 119,  t79,  t78,  255(I32)
+	c0    shru $r0.26 = $r0.23, 8   ## bblock 31, line 118,  t61(I24),  t78,  8(SI32)
+	c0    sh2add $r0.21 = $r0.21, (conv7_image + 0)   ## bblock 31, line 117-1,  t407,  t405,  addr(conv7_image?1.0)(P32)
 	c0    ldw $r0.11 = 0[$r0.11]   ## bblock 31, line 117-2, t385, t384
 	c0    ldw $r0.13 = 0[$r0.13]   ## bblock 31, line 117-3, t362, t361
-	c0    add $r0.24 = $r0.5, $r0.24   ## bblock 31, line 117-4,  t336,  t428,  t335
-	c0    ldw $r0.15 = 0[$r0.15]   ## bblock 31, line 117-5, t316, t315
+	c0    sh2add $r0.22 = $r0.22, (conv7_image + 0)   ## bblock 31, line 117-4,  t338,  t336,  addr(conv7_image?1.0)(P32)
 	c0    ldw $r0.4 = 0[$r0.4]   ## bblock 31, line 117-6, t293, t292
-	c0    add $r0.5 = $r0.5, 1   ## bblock 31, line 0,  t428,  t428,  1(I32)
 ;;								## 4
-	c0    and $r0.10 = $r0.10, 255   ## bblock 31, line 117,  t44,  t43(I16),  255(I32)
-	c0    mpylu $r0.26 = $r0.20, $r0.21   ## bblock 31, line 119,  t1031,  t70,  t79
-	c0    mpyhs $r0.21 = $r0.20, $r0.21   ## bblock 31, line 119,  t1032,  t70,  t79
-	c0    and $r0.9 = $r0.9, 255   ## bblock 31, line 118,  t62,  t61(I24),  255(I32)
-	c0    sh2add $r0.22 = $r0.22, (conv7_image + 0)   ## bblock 31, line 117-1,  t407,  t405,  addr(conv7_image?1.0)(P32)
-	c0    sh2add $r0.24 = $r0.24, (conv7_image + 0)   ## bblock 31, line 117-4,  t338,  t336,  addr(conv7_image?1.0)(P32)
+	c0    pft 32[$r0.10]   ## bblock 31, line 117,  t1028,  32(I32)
+	c0    and $r0.27 = $r0.27, 255   ## bblock 31, line 117,  t44,  t43(I16),  255(I32)
+	c0    mpylu $r0.9 = $r0.19, $r0.23   ## bblock 31, line 119,  t1031,  t70,  t79
+	c0    mpyhs $r0.23 = $r0.19, $r0.23   ## bblock 31, line 119,  t1032,  t70,  t79
+	c0    and $r0.26 = $r0.26, 255   ## bblock 31, line 118,  t62,  t61(I24),  255(I32)
+	c0    ldw $r0.21 = 0[$r0.21]   ## bblock 31, line 117-1, t408, t407
+	c0    ldw $r0.22 = 0[$r0.22]   ## bblock 31, line 117-4, t339, t338
+	c0    ldw $r0.15 = 0[$r0.15]   ## bblock 31, line 117-5, t316, t315
 ;;								## 5
-	c0    mpylu $r0.33 = $r0.20, $r0.10   ## bblock 31, line 117,  t1029,  t70,  t44
-	c0    mpyhs $r0.20 = $r0.20, $r0.10   ## bblock 31, line 117,  t1030,  t70,  t44
-	c0    mpylu $r0.28 = $r0.20, $r0.9   ## bblock 31, line 118,  t1039,  t70,  t62
-	c0    mpyhs $r0.9 = $r0.20, $r0.9   ## bblock 31, line 118,  t1040,  t70,  t62
-	c0    ldw $r0.22 = 0[$r0.22]   ## bblock 31, line 117-1, t408, t407
-	c0    shru $r0.29 = $r0.11, 8   ## bblock 31, line 118-2,  t393(I24),  t385,  8(SI32)
-	c0    shru $r0.30 = $r0.13, 8   ## bblock 31, line 118-3,  t370(I24),  t362,  8(SI32)
-	c0    ldw $r0.24 = 0[$r0.24]   ## bblock 31, line 117-4, t339, t338
-	c0    shru $r0.31 = $r0.15, 8   ## bblock 31, line 118-5,  t324(I24),  t316,  8(SI32)
-	c0    shru $r0.32 = $r0.4, 16   ## bblock 31, line 117-6,  t294(I16),  t293,  16(SI32)
-	c0    shru $r0.27 = $r0.4, 8   ## bblock 31, line 118-6,  t301(I24),  t293,  8(SI32)
-;;								## 6
-	c0    add $r0.26 = $r0.26, $r0.21   ## bblock 31, line 119,  t80,  t1031,  t1032
-	c0    shru $r0.10 = $r0.11, 16   ## bblock 31, line 117-2,  t386(I16),  t385,  16(SI32)
+	c0    mpylu $r0.32 = $r0.19, $r0.27   ## bblock 31, line 117,  t1029,  t70,  t44
+	c0    mpyhs $r0.19 = $r0.19, $r0.27   ## bblock 31, line 117,  t1030,  t70,  t44
+	c0    mpylu $r0.28 = $r0.19, $r0.26   ## bblock 31, line 118,  t1039,  t70,  t62
+	c0    mpyhs $r0.26 = $r0.19, $r0.26   ## bblock 31, line 118,  t1040,  t70,  t62
+	c0    shru $r0.27 = $r0.11, 16   ## bblock 31, line 117-2,  t386(I16),  t385,  16(SI32)
 	c0    and $r0.11 = $r0.11, 255   ## bblock 31, line 119-2,  t389,  t385,  255(I32)
-	c0    and $r0.29 = $r0.29, 255   ## bblock 31, line 118-2,  t394,  t393(I24),  255(I32)
-	c0    shru $r0.34 = $r0.13, 16   ## bblock 31, line 117-3,  t363(I16),  t362,  16(SI32)
-	c0    and $r0.30 = $r0.30, 255   ## bblock 31, line 118-3,  t371,  t370(I24),  255(I32)
-	c0    shru $r0.35 = $r0.15, 16   ## bblock 31, line 117-5,  t317(I16),  t316,  16(SI32)
-	c0    and $r0.31 = $r0.31, 255   ## bblock 31, line 118-5,  t325,  t324(I24),  255(I32)
-	c0    and $r0.32 = $r0.32, 255   ## bblock 31, line 117-6,  t295,  t294(I16),  255(I32)
-	c0    and $r0.4 = $r0.4, 255   ## bblock 31, line 119-6,  t297,  t293,  255(I32)
-	c0    and $r0.27 = $r0.27, 255   ## bblock 31, line 118-6,  t302,  t301(I24),  255(I32)
-;;								## 7
-	c0    add $r0.33 = $r0.33, $r0.20   ## bblock 31, line 117,  t45,  t1029,  t1030
-	c0    add $r0.28 = $r0.28, $r0.9   ## bblock 31, line 118,  t63,  t1039,  t1040
-	c0    shru $r0.37 = $r0.22, 8   ## bblock 31, line 118-1,  t416(I24),  t408,  8(SI32)
-	c0    and $r0.10 = $r0.10, 255   ## bblock 31, line 117-2,  t387,  t386(I16),  255(I32)
-	c0    mpylu $r0.9 = $r0.12, $r0.29   ## bblock 31, line 118-2,  t1071,  t380,  t394
-	c0    mpyhs $r0.29 = $r0.12, $r0.29   ## bblock 31, line 118-2,  t1072,  t380,  t394
-	c0    mpylu $r0.36 = $r0.14, $r0.30   ## bblock 31, line 118-3,  t1087,  t357,  t371
-	c0    mpyhs $r0.30 = $r0.14, $r0.30   ## bblock 31, line 118-3,  t1088,  t357,  t371
-	c0    shru $r0.38 = $r0.24, 8   ## bblock 31, line 118-4,  t347(I24),  t339,  8(SI32)
-	c0    mpylu $r0.21 = $r0.7, $r0.27   ## bblock 31, line 118-6,  t1135,  t288,  t302
-	c0    mpyhs $r0.27 = $r0.7, $r0.27   ## bblock 31, line 118-6,  t1136,  t288,  t302
-;;								## 8
-	c0    cmplt $b0.1 = $r0.33, $r0.0   ## bblock 31, line 117,  t1033,  t45,  0(I32)
-	c0    add $r0.41 = $r0.33, 255   ## bblock 31, line 117,  t1034,  t45,  255(I32)
-	c0    cmplt $b0.0 = $r0.28, $r0.0   ## bblock 31, line 118,  t1041,  t63,  0(I32)
-	c0    add $r0.20 = $r0.28, 255   ## bblock 31, line 118,  t1042,  t63,  255(I32)
-	c0    and $r0.37 = $r0.37, 255   ## bblock 31, line 118-1,  t417,  t416(I24),  255(I32)
-	c0    mpylu $r0.42 = $r0.12, $r0.10   ## bblock 31, line 117-2,  t1061,  t380,  t387
-	c0    and $r0.38 = $r0.38, 255   ## bblock 31, line 118-4,  t348,  t347(I24),  255(I32)
-	c0    mpylu $r0.39 = $r0.16, $r0.31   ## bblock 31, line 118-5,  t1119,  t311,  t325
-	c0    mpyhs $r0.31 = $r0.16, $r0.31   ## bblock 31, line 118-5,  t1120,  t311,  t325
-	c0    mpylu $r0.40 = $r0.7, $r0.32   ## bblock 31, line 117-6,  t1125,  t288,  t295
-	c0    mpyhs $r0.32 = $r0.7, $r0.32   ## bblock 31, line 117-6,  t1126,  t288,  t295
-;;								## 9
-	c0    slct $r0.41 = $b0.1, $r0.41, $r0.33   ## bblock 31, line 117,  t1035,  t1033,  t1034,  t45
-	c0    slct $r0.20 = $b0.0, $r0.20, $r0.28   ## bblock 31, line 118,  t1043,  t1041,  t1042,  t63
-	c0    mpylu $r0.27 = $r0.23, $r0.37   ## bblock 31, line 118-1,  t1055,  t403,  t417
-	c0    mpyhs $r0.37 = $r0.23, $r0.37   ## bblock 31, line 118-1,  t1056,  t403,  t417
-	c0    mpyhs $r0.10 = $r0.12, $r0.10   ## bblock 31, line 117-2,  t1062,  t380,  t387
-	c0    add $r0.9 = $r0.9, $r0.29   ## bblock 31, line 118-2,  t395,  t1071,  t1072
-	c0    and $r0.34 = $r0.34, 255   ## bblock 31, line 117-3,  t364,  t363(I16),  255(I32)
-	c0    add $r0.36 = $r0.36, $r0.30   ## bblock 31, line 118-3,  t372,  t1087,  t1088
-	c0    mpylu $r0.28 = $r0.25, $r0.38   ## bblock 31, line 118-4,  t1103,  t334,  t348
-	c0    mpyhs $r0.38 = $r0.25, $r0.38   ## bblock 31, line 118-4,  t1104,  t334,  t348
-	c0    add $r0.21 = $r0.21, $r0.27   ## bblock 31, line 118-6,  t303,  t1135,  t1136
-;;								## 10
-	c0    shr $r0.41 = $r0.41, 8   ## bblock 31, line 117,  t46,  t1035,  8(I32)
-	c0    shr $r0.20 = $r0.20, 8   ## bblock 31, line 118,  t64,  t1043,  8(I32)
-	c0    cmplt $b0.1 = $r0.9, $r0.0   ## bblock 31, line 118-2,  t1073,  t395,  0(I32)
-	c0    add $r0.30 = $r0.9, 255   ## bblock 31, line 118-2,  t1074,  t395,  255(I32)
-	c0    mpylu $r0.31 = $r0.14, $r0.34   ## bblock 31, line 117-3,  t1077,  t357,  t364
-	c0    cmplt $b0.2 = $r0.36, $r0.0   ## bblock 31, line 118-3,  t1089,  t372,  0(I32)
-	c0    add $r0.33 = $r0.36, 255   ## bblock 31, line 118-3,  t1090,  t372,  255(I32)
-	c0    add $r0.39 = $r0.39, $r0.31   ## bblock 31, line 118-5,  t326,  t1119,  t1120
-	c0    add $r0.40 = $r0.40, $r0.32   ## bblock 31, line 117-6,  t296,  t1125,  t1126
-	c0    cmplt $b0.0 = $r0.21, $r0.0   ## bblock 31, line 118-6,  t1137,  t303,  0(I32)
-	c0    add $r0.29 = $r0.21, 255   ## bblock 31, line 118-6,  t1138,  t303,  255(I32)
-;;								## 11
-	c0    add $r0.27 = $r0.27, $r0.37   ## bblock 31, line 118-1,  t418,  t1055,  t1056
-	c0    add $r0.42 = $r0.42, $r0.10   ## bblock 31, line 117-2,  t388,  t1061,  t1062
-	c0    slct $r0.30 = $b0.1, $r0.30, $r0.9   ## bblock 31, line 118-2,  t1075,  t1073,  t1074,  t395
-	c0    mpyhs $r0.34 = $r0.14, $r0.34   ## bblock 31, line 117-3,  t1078,  t357,  t364
-	c0    slct $r0.33 = $b0.2, $r0.33, $r0.36   ## bblock 31, line 118-3,  t1091,  t1089,  t1090,  t372
-	c0    add $r0.28 = $r0.28, $r0.38   ## bblock 31, line 118-4,  t349,  t1103,  t1104
-	c0    cmplt $b0.0 = $r0.39, $r0.0   ## bblock 31, line 118-5,  t1121,  t326,  0(I32)
-	c0    add $r0.9 = $r0.39, 255   ## bblock 31, line 118-5,  t1122,  t326,  255(I32)
-	c0    cmplt $b0.1 = $r0.40, $r0.0   ## bblock 31, line 117-6,  t1127,  t296,  0(I32)
-	c0    add $r0.21 = $r0.40, 255   ## bblock 31, line 117-6,  t1128,  t296,  255(I32)
-	c0    slct $r0.29 = $b0.0, $r0.29, $r0.21   ## bblock 31, line 118-6,  t1139,  t1137,  t1138,  t303
-;;								## 12
-	c0    cmplt $b0.0 = $r0.27, $r0.0   ## bblock 31, line 118-1,  t1057,  t418,  0(I32)
-	c0    add $r0.10 = $r0.27, 255   ## bblock 31, line 118-1,  t1058,  t418,  255(I32)
-	c0    cmplt $b0.1 = $r0.42, $r0.0   ## bblock 31, line 117-2,  t1063,  t388,  0(I32)
-	c0    add $r0.36 = $r0.42, 255   ## bblock 31, line 117-2,  t1064,  t388,  255(I32)
-	c0    shr $r0.30 = $r0.30, 8   ## bblock 31, line 118-2,  t396,  t1075,  8(I32)
-	c0    shr $r0.33 = $r0.33, 8   ## bblock 31, line 118-3,  t373,  t1091,  8(I32)
-	c0    cmplt $b0.2 = $r0.28, $r0.0   ## bblock 31, line 118-4,  t1105,  t349,  0(I32)
-	c0    add $r0.32 = $r0.28, 255   ## bblock 31, line 118-4,  t1106,  t349,  255(I32)
-	c0    slct $r0.9 = $b0.0, $r0.9, $r0.39   ## bblock 31, line 118-5,  t1123,  t1121,  t1122,  t326
-	c0    slct $r0.21 = $b0.1, $r0.21, $r0.40   ## bblock 31, line 117-6,  t1129,  t1127,  t1128,  t296
-	c0    shr $r0.29 = $r0.29, 8   ## bblock 31, line 118-6,  t304,  t1139,  8(I32)
-;;								## 13
-	c0    shru $r0.27 = $r0.22, 16   ## bblock 31, line 117-1,  t409(I16),  t408,  16(SI32)
-	c0    slct $r0.10 = $b0.0, $r0.10, $r0.27   ## bblock 31, line 118-1,  t1059,  t1057,  t1058,  t418
-	c0    slct $r0.36 = $b0.1, $r0.36, $r0.42   ## bblock 31, line 117-2,  t1065,  t1063,  t1064,  t388
-	c0    add $r0.31 = $r0.31, $r0.34   ## bblock 31, line 117-3,  t365,  t1077,  t1078
-	c0    shru $r0.28 = $r0.24, 16   ## bblock 31, line 117-4,  t340(I16),  t339,  16(SI32)
-	c0    slct $r0.32 = $b0.2, $r0.32, $r0.28   ## bblock 31, line 118-4,  t1107,  t1105,  t1106,  t349
-	c0    and $r0.35 = $r0.35, 255   ## bblock 31, line 117-5,  t318,  t317(I16),  255(I32)
-	c0    shr $r0.9 = $r0.9, 8   ## bblock 31, line 118-5,  t327,  t1123,  8(I32)
-	c0    shr $r0.21 = $r0.21, 8   ## bblock 31, line 117-6,  t299,  t1129,  8(I32)
-	c0    add $r0.20 = $r0.20, $r0.29   ## bblock 31, line 118-6,  t1140,  t64,  t304
-	c0    add $r0.30 = $r0.30, $r0.33   ## bblock 31, line 118-6,  t1143,  t396,  t373
-;;								## 14
-	c0    and $r0.27 = $r0.27, 255   ## bblock 31, line 117-1,  t410,  t409(I16),  255(I32)
-	c0    shr $r0.10 = $r0.10, 8   ## bblock 31, line 118-1,  t419,  t1059,  8(I32)
-	c0    shr $r0.36 = $r0.36, 8   ## bblock 31, line 117-2,  t391,  t1065,  8(I32)
-	c0    cmplt $b0.0 = $r0.31, $r0.0   ## bblock 31, line 117-3,  t1079,  t365,  0(I32)
-	c0    add $r0.9 = $r0.31, 255   ## bblock 31, line 117-3,  t1080,  t365,  255(I32)
-	c0    shr $r0.32 = $r0.32, 8   ## bblock 31, line 118-4,  t350,  t1107,  8(I32)
-	c0    mpylu $r0.21 = $r0.16, $r0.35   ## bblock 31, line 117-5,  t1109,  t311,  t318
-	c0    mpyhs $r0.35 = $r0.16, $r0.35   ## bblock 31, line 117-5,  t1110,  t311,  t318
-	c0    add $r0.17 = $r0.17, $r0.9   ## bblock 31, line 118-6,  t1141,  t152,  t327
-	c0    add $r0.20 = $r0.20, $r0.30   ## bblock 31, line 118-6,  t1144,  t1140,  t1143
-	c0    add $r0.41 = $r0.41, $r0.21   ## bblock 31, line 117-6,  t1152,  t46,  t299
-;;								## 15
-	c0    cmplt $b0.0 = $r0.26, $r0.0   ## bblock 31, line 119,  t1036,  t80,  0(I32)
-	c0    add $r0.4 = $r0.26, 255   ## bblock 31, line 119,  t1037,  t80,  255(I32)
-	c0    mpylu $r0.29 = $r0.23, $r0.27   ## bblock 31, line 117-1,  t1045,  t403,  t410
-	c0    mpyhs $r0.27 = $r0.23, $r0.27   ## bblock 31, line 117-1,  t1046,  t403,  t410
-	c0    mpylu $r0.31 = $r0.12, $r0.11   ## bblock 31, line 119-2,  t1066,  t380,  t389
-	c0    mpyhs $r0.12 = $r0.12, $r0.11   ## bblock 31, line 119-2,  t1067,  t380,  t389
-	c0    slct $r0.9 = $b0.0, $r0.9, $r0.31   ## bblock 31, line 117-3,  t1081,  t1079,  t1080,  t365
-	c0    and $r0.28 = $r0.28, 255   ## bblock 31, line 117-4,  t341,  t340(I16),  255(I32)
-	c0    mpylu $r0.30 = $r0.7, $r0.4   ## bblock 31, line 119-6,  t1130,  t288,  t297
-	c0    mpyhs $r0.7 = $r0.7, $r0.4   ## bblock 31, line 119-6,  t1131,  t288,  t297
-	c0    add $r0.10 = $r0.10, $r0.32   ## bblock 31, line 118-6,  t1142,  t419,  t350
-;;								## 16
-	c0    slct $r0.4 = $b0.0, $r0.4, $r0.26   ## bblock 31, line 119,  t1038,  t1036,  t1037,  t80
-	c0    and $r0.22 = $r0.22, 255   ## bblock 31, line 119-1,  t412,  t408,  255(I32)
+	c0    shru $r0.29 = $r0.11, 8   ## bblock 31, line 118-2,  t393(I24),  t385,  8(SI32)
+	c0    shru $r0.33 = $r0.13, 16   ## bblock 31, line 117-3,  t363(I16),  t362,  16(SI32)
 	c0    and $r0.13 = $r0.13, 255   ## bblock 31, line 119-3,  t366,  t362,  255(I32)
-	c0    shr $r0.9 = $r0.9, 8   ## bblock 31, line 117-3,  t368,  t1081,  8(I32)
-	c0    and $r0.24 = $r0.24, 255   ## bblock 31, line 119-4,  t343,  t339,  255(I32)
-	c0    mpylu $r0.10 = $r0.25, $r0.28   ## bblock 31, line 117-4,  t1093,  t334,  t341
-	c0    mpyhs $r0.28 = $r0.25, $r0.28   ## bblock 31, line 117-4,  t1094,  t334,  t341
-	c0    and $r0.15 = $r0.15, 255   ## bblock 31, line 119-5,  t320,  t316,  255(I32)
-	c0    add $r0.21 = $r0.21, $r0.35   ## bblock 31, line 117-5,  t319,  t1109,  t1110
-	c0    add $r0.17 = $r0.17, $r0.10   ## bblock 31, line 118-6,  t1145,  t1141,  t1142
-;;								## 17
-	c0    shr $r0.4 = $r0.4, 8   ## bblock 31, line 119,  t81,  t1038,  8(I32)
-	c0    add $r0.29 = $r0.29, $r0.27   ## bblock 31, line 117-1,  t411,  t1045,  t1046
-	c0    add $r0.31 = $r0.31, $r0.12   ## bblock 31, line 119-2,  t390,  t1066,  t1067
-	c0    mpylu $r0.7 = $r0.14, $r0.13   ## bblock 31, line 119-3,  t1082,  t357,  t366
-	c0    mpyhs $r0.14 = $r0.14, $r0.13   ## bblock 31, line 119-3,  t1083,  t357,  t366
-	c0    cmplt $b0.0 = $r0.21, $r0.0   ## bblock 31, line 117-5,  t1111,  t319,  0(I32)
-	c0    add $r0.9 = $r0.21, 255   ## bblock 31, line 117-5,  t1112,  t319,  255(I32)
-	c0    mpylu $r0.11 = $r0.16, $r0.15   ## bblock 31, line 119-5,  t1114,  t311,  t320
-	c0    add $r0.30 = $r0.30, $r0.7   ## bblock 31, line 119-6,  t298,  t1130,  t1131
-	c0    add $r0.17 = $r0.20, $r0.17   ## bblock 31, line 118-6,  t152,  t1144,  t1145
-	c0    add $r0.36 = $r0.36, $r0.9   ## bblock 31, line 117-6,  t1155,  t391,  t368
-;;								## 18
+	c0    shru $r0.30 = $r0.13, 8   ## bblock 31, line 118-3,  t370(I24),  t362,  8(SI32)
+	c0    shru $r0.31 = $r0.4, 16   ## bblock 31, line 117-6,  t294(I16),  t293,  16(SI32)
+	c0    and $r0.4 = $r0.4, 255   ## bblock 31, line 119-6,  t297,  t293,  255(I32)
+	c0    shru $r0.10 = $r0.4, 8   ## bblock 31, line 118-6,  t301(I24),  t293,  8(SI32)
+;;								## 6
+	c0    shru $r0.38 = $r0.21, 16   ## bblock 31, line 117-1,  t409(I16),  t408,  16(SI32)
+	c0    shru $r0.35 = $r0.21, 8   ## bblock 31, line 118-1,  t416(I24),  t408,  8(SI32)
+	c0    and $r0.27 = $r0.27, 255   ## bblock 31, line 117-2,  t387,  t386(I16),  255(I32)
+	c0    and $r0.29 = $r0.29, 255   ## bblock 31, line 118-2,  t394,  t393(I24),  255(I32)
+	c0    and $r0.33 = $r0.33, 255   ## bblock 31, line 117-3,  t364,  t363(I16),  255(I32)
+	c0    and $r0.30 = $r0.30, 255   ## bblock 31, line 118-3,  t371,  t370(I24),  255(I32)
+	c0    shru $r0.39 = $r0.22, 16   ## bblock 31, line 117-4,  t340(I16),  t339,  16(SI32)
+	c0    shru $r0.36 = $r0.22, 8   ## bblock 31, line 118-4,  t347(I24),  t339,  8(SI32)
+	c0    shru $r0.37 = $r0.15, 16   ## bblock 31, line 117-5,  t317(I16),  t316,  16(SI32)
+	c0    shru $r0.34 = $r0.15, 8   ## bblock 31, line 118-5,  t324(I24),  t316,  8(SI32)
+	c0    and $r0.31 = $r0.31, 255   ## bblock 31, line 117-6,  t295,  t294(I16),  255(I32)
+	c0    and $r0.10 = $r0.10, 255   ## bblock 31, line 118-6,  t302,  t301(I24),  255(I32)
+	c0    mpylu $r0.40 = $r0.7, $r0.4   ## bblock 31, line 119-6,  t1130,  t288,  t297
+	c0    mpyhs $r0.4 = $r0.7, $r0.4   ## bblock 31, line 119-6,  t1131,  t288,  t297
+;;								## 7
+	c0    add $r0.32 = $r0.32, $r0.19   ## bblock 31, line 117,  t45,  t1029,  t1030
+	c0    add $r0.28 = $r0.28, $r0.26   ## bblock 31, line 118,  t63,  t1039,  t1040
+	c0    and $r0.35 = $r0.35, 255   ## bblock 31, line 118-1,  t417,  t416(I24),  255(I32)
+	c0    mpylu $r0.19 = $r0.12, $r0.27   ## bblock 31, line 117-2,  t1061,  t380,  t387
+	c0    mpylu $r0.26 = $r0.12, $r0.29   ## bblock 31, line 118-2,  t1071,  t380,  t394
+	c0    mpyhs $r0.29 = $r0.12, $r0.29   ## bblock 31, line 118-2,  t1072,  t380,  t394
+	c0    mpylu $r0.42 = $r0.14, $r0.30   ## bblock 31, line 118-3,  t1087,  t357,  t371
+	c0    mpyhs $r0.30 = $r0.14, $r0.30   ## bblock 31, line 118-3,  t1088,  t357,  t371
+	c0    and $r0.36 = $r0.36, 255   ## bblock 31, line 118-4,  t348,  t347(I24),  255(I32)
+	c0    and $r0.34 = $r0.34, 255   ## bblock 31, line 118-5,  t325,  t324(I24),  255(I32)
+	c0    mpylu $r0.43 = $r0.7, $r0.31   ## bblock 31, line 117-6,  t1125,  t288,  t295
+	c0    mpyhs $r0.7 = $r0.7, $r0.31   ## bblock 31, line 117-6,  t1126,  t288,  t295
+	c0    mpylu $r0.41 = $r0.7, $r0.10   ## bblock 31, line 118-6,  t1135,  t288,  t302
+	c0    mpyhs $r0.10 = $r0.7, $r0.10   ## bblock 31, line 118-6,  t1136,  t288,  t302
+;;								## 8
+	c0    add $r0.9 = $r0.9, $r0.23   ## bblock 31, line 119,  t80,  t1031,  t1032
+	c0    cmplt $b0.1 = $r0.32, $r0.0   ## bblock 31, line 117,  t1033,  t45,  0(I32)
+	c0    cmplt $b0.0 = $r0.28, $r0.0   ## bblock 31, line 118,  t1041,  t63,  0(I32)
+	c0    add $r0.31 = $r0.28, 255   ## bblock 31, line 118,  t1042,  t63,  255(I32)
+	c0    and $r0.38 = $r0.38, 255   ## bblock 31, line 117-1,  t410,  t409(I16),  255(I32)
+	c0    mpylu $r0.45 = $r0.24, $r0.35   ## bblock 31, line 118-1,  t1055,  t403,  t417
+	c0    mpyhs $r0.35 = $r0.24, $r0.35   ## bblock 31, line 118-1,  t1056,  t403,  t417
+	c0    mpyhs $r0.27 = $r0.12, $r0.27   ## bblock 31, line 117-2,  t1062,  t380,  t387
+	c0    mpylu $r0.4 = $r0.12, $r0.11   ## bblock 31, line 119-2,  t1066,  t380,  t389
+	c0    and $r0.39 = $r0.39, 255   ## bblock 31, line 117-4,  t341,  t340(I16),  255(I32)
+	c0    and $r0.37 = $r0.37, 255   ## bblock 31, line 117-5,  t318,  t317(I16),  255(I32)
+	c0    mpylu $r0.44 = $r0.20, $r0.34   ## bblock 31, line 118-5,  t1119,  t311,  t325
+	c0    mpyhs $r0.34 = $r0.20, $r0.34   ## bblock 31, line 118-5,  t1120,  t311,  t325
+	c0    add $r0.40 = $r0.40, $r0.4   ## bblock 31, line 119-6,  t298,  t1130,  t1131
+;;								## 9
+	c0    add $r0.7 = $r0.32, 255   ## bblock 31, line 117,  t1034,  t45,  255(I32)
+	c0    slct $r0.31 = $b0.0, $r0.31, $r0.28   ## bblock 31, line 118,  t1043,  t1041,  t1042,  t63
+	c0    mpylu $r0.29 = $r0.24, $r0.38   ## bblock 31, line 117-1,  t1045,  t403,  t410
+	c0    mpyhs $r0.38 = $r0.24, $r0.38   ## bblock 31, line 117-1,  t1046,  t403,  t410
+	c0    add $r0.26 = $r0.26, $r0.29   ## bblock 31, line 118-2,  t395,  t1071,  t1072
+	c0    mpylu $r0.23 = $r0.14, $r0.33   ## bblock 31, line 117-3,  t1077,  t357,  t364
+	c0    mpyhs $r0.33 = $r0.14, $r0.33   ## bblock 31, line 117-3,  t1078,  t357,  t364
+	c0    add $r0.42 = $r0.42, $r0.30   ## bblock 31, line 118-3,  t372,  t1087,  t1088
+	c0    mpylu $r0.10 = $r0.25, $r0.36   ## bblock 31, line 118-4,  t1103,  t334,  t348
+	c0    mpyhs $r0.36 = $r0.25, $r0.36   ## bblock 31, line 118-4,  t1104,  t334,  t348
+	c0    mpylu $r0.28 = $r0.20, $r0.37   ## bblock 31, line 117-5,  t1109,  t311,  t318
+	c0    mpyhs $r0.37 = $r0.20, $r0.37   ## bblock 31, line 117-5,  t1110,  t311,  t318
+	c0    add $r0.43 = $r0.43, $r0.7   ## bblock 31, line 117-6,  t296,  t1125,  t1126
+	c0    add $r0.41 = $r0.41, $r0.10   ## bblock 31, line 118-6,  t303,  t1135,  t1136
+;;								## 10
+	c0    slct $r0.7 = $b0.1, $r0.7, $r0.32   ## bblock 31, line 117,  t1035,  t1033,  t1034,  t45
+	c0    shr $r0.31 = $r0.31, 8   ## bblock 31, line 118,  t64,  t1043,  8(I32)
+	c0    add $r0.45 = $r0.45, $r0.35   ## bblock 31, line 118-1,  t418,  t1055,  t1056
+	c0    add $r0.19 = $r0.19, $r0.27   ## bblock 31, line 117-2,  t388,  t1061,  t1062
+	c0    cmplt $b0.2 = $r0.26, $r0.0   ## bblock 31, line 118-2,  t1073,  t395,  0(I32)
+	c0    cmplt $b0.3 = $r0.42, $r0.0   ## bblock 31, line 118-3,  t1089,  t372,  0(I32)
+	c0    mpylu $r0.27 = $r0.25, $r0.39   ## bblock 31, line 117-4,  t1093,  t334,  t341
+	c0    mpyhs $r0.39 = $r0.25, $r0.39   ## bblock 31, line 117-4,  t1094,  t334,  t341
+	c0    add $r0.44 = $r0.44, $r0.34   ## bblock 31, line 118-5,  t326,  t1119,  t1120
+	c0    cmplt $b0.4 = $r0.43, $r0.0   ## bblock 31, line 117-6,  t1127,  t296,  0(I32)
+	c0    add $r0.34 = $r0.43, 255   ## bblock 31, line 117-6,  t1128,  t296,  255(I32)
+	c0    cmplt $b0.0 = $r0.41, $r0.0   ## bblock 31, line 118-6,  t1137,  t303,  0(I32)
+	c0    add $r0.30 = $r0.41, 255   ## bblock 31, line 118-6,  t1138,  t303,  255(I32)
+	c0    stw 0x14[$r0.1] = $r0.2  ## spill ## t429
+;;								## 11
+	c0    shr $r0.7 = $r0.7, 8   ## bblock 31, line 117,  t46,  t1035,  8(I32)
+	c0    cmplt $b0.1 = $r0.45, $r0.0   ## bblock 31, line 118-1,  t1057,  t418,  0(I32)
+	c0    add $r0.2 = $r0.45, 255   ## bblock 31, line 118-1,  t1058,  t418,  255(I32)
+	c0    cmplt $b0.4 = $r0.19, $r0.0   ## bblock 31, line 117-2,  t1063,  t388,  0(I32)
+	c0    add $r0.36 = $r0.19, 255   ## bblock 31, line 117-2,  t1064,  t388,  255(I32)
+	c0    add $r0.32 = $r0.26, 255   ## bblock 31, line 118-2,  t1074,  t395,  255(I32)
+	c0    add $r0.23 = $r0.23, $r0.33   ## bblock 31, line 117-3,  t365,  t1077,  t1078
+	c0    add $r0.35 = $r0.42, 255   ## bblock 31, line 118-3,  t1090,  t372,  255(I32)
+	c0    add $r0.10 = $r0.10, $r0.36   ## bblock 31, line 118-4,  t349,  t1103,  t1104
+	c0    add $r0.28 = $r0.28, $r0.37   ## bblock 31, line 117-5,  t319,  t1109,  t1110
+	c0    cmplt $b0.0 = $r0.44, $r0.0   ## bblock 31, line 118-5,  t1121,  t326,  0(I32)
+	c0    add $r0.41 = $r0.44, 255   ## bblock 31, line 118-5,  t1122,  t326,  255(I32)
+	c0    slct $r0.34 = $b0.4, $r0.34, $r0.43   ## bblock 31, line 117-6,  t1129,  t1127,  t1128,  t296
+	c0    slct $r0.30 = $b0.0, $r0.30, $r0.41   ## bblock 31, line 118-6,  t1139,  t1137,  t1138,  t303
+;;								## 12
+	c0    add $r0.29 = $r0.29, $r0.38   ## bblock 31, line 117-1,  t411,  t1045,  t1046
+	c0    slct $r0.2 = $b0.1, $r0.2, $r0.45   ## bblock 31, line 118-1,  t1059,  t1057,  t1058,  t418
+	c0    slct $r0.36 = $b0.4, $r0.36, $r0.19   ## bblock 31, line 117-2,  t1065,  t1063,  t1064,  t388
+	c0    slct $r0.32 = $b0.2, $r0.32, $r0.26   ## bblock 31, line 118-2,  t1075,  t1073,  t1074,  t395
+	c0    cmplt $b0.1 = $r0.23, $r0.0   ## bblock 31, line 117-3,  t1079,  t365,  0(I32)
+	c0    add $r0.19 = $r0.23, 255   ## bblock 31, line 117-3,  t1080,  t365,  255(I32)
+	c0    slct $r0.35 = $b0.3, $r0.35, $r0.42   ## bblock 31, line 118-3,  t1091,  t1089,  t1090,  t372
+	c0    cmplt $b0.0 = $r0.10, $r0.0   ## bblock 31, line 118-4,  t1105,  t349,  0(I32)
+	c0    add $r0.26 = $r0.10, 255   ## bblock 31, line 118-4,  t1106,  t349,  255(I32)
+	c0    cmplt $b0.2 = $r0.28, $r0.0   ## bblock 31, line 117-5,  t1111,  t319,  0(I32)
+	c0    add $r0.33 = $r0.28, 255   ## bblock 31, line 117-5,  t1112,  t319,  255(I32)
+	c0    slct $r0.41 = $b0.0, $r0.41, $r0.44   ## bblock 31, line 118-5,  t1123,  t1121,  t1122,  t326
+	c0    shr $r0.34 = $r0.34, 8   ## bblock 31, line 117-6,  t299,  t1129,  8(I32)
+	c0    shr $r0.30 = $r0.30, 8   ## bblock 31, line 118-6,  t304,  t1139,  8(I32)
+;;								## 13
 	c0    cmplt $b0.0 = $r0.29, $r0.0   ## bblock 31, line 117-1,  t1047,  t411,  0(I32)
-	c0    add $r0.12 = $r0.29, 255   ## bblock 31, line 117-1,  t1048,  t411,  255(I32)
-	c0    mpylu $r0.15 = $r0.23, $r0.22   ## bblock 31, line 119-1,  t1050,  t403,  t412
-	c0    cmplt $b0.2 = $r0.31, $r0.0   ## bblock 31, line 119-2,  t1068,  t390,  0(I32)
-	c0    add $r0.20 = $r0.31, 255   ## bblock 31, line 119-2,  t1069,  t390,  255(I32)
-	c0    add $r0.10 = $r0.10, $r0.28   ## bblock 31, line 117-4,  t342,  t1093,  t1094
-	c0    slct $r0.9 = $b0.0, $r0.9, $r0.21   ## bblock 31, line 117-5,  t1113,  t1111,  t1112,  t319
-	c0    mpyhs $r0.16 = $r0.16, $r0.15   ## bblock 31, line 119-5,  t1115,  t311,  t320
-	c0    cmplt $b0.1 = $r0.30, $r0.0   ## bblock 31, line 119-6,  t1132,  t298,  0(I32)
-	c0    add $r0.13 = $r0.30, 255   ## bblock 31, line 119-6,  t1133,  t298,  255(I32)
-	c0    add $r0.41 = $r0.41, $r0.36   ## bblock 31, line 117-6,  t1156,  t1152,  t1155
+	c0    add $r0.10 = $r0.29, 255   ## bblock 31, line 117-1,  t1048,  t411,  255(I32)
+	c0    shr $r0.2 = $r0.2, 8   ## bblock 31, line 118-1,  t419,  t1059,  8(I32)
+	c0    shr $r0.36 = $r0.36, 8   ## bblock 31, line 117-2,  t391,  t1065,  8(I32)
+	c0    shr $r0.32 = $r0.32, 8   ## bblock 31, line 118-2,  t396,  t1075,  8(I32)
+	c0    slct $r0.19 = $b0.1, $r0.19, $r0.23   ## bblock 31, line 117-3,  t1081,  t1079,  t1080,  t365
+	c0    shr $r0.35 = $r0.35, 8   ## bblock 31, line 118-3,  t373,  t1091,  8(I32)
+	c0    add $r0.27 = $r0.27, $r0.39   ## bblock 31, line 117-4,  t342,  t1093,  t1094
+	c0    slct $r0.26 = $b0.0, $r0.26, $r0.10   ## bblock 31, line 118-4,  t1107,  t1105,  t1106,  t349
+	c0    slct $r0.33 = $b0.2, $r0.33, $r0.28   ## bblock 31, line 117-5,  t1113,  t1111,  t1112,  t319
+	c0    shr $r0.41 = $r0.41, 8   ## bblock 31, line 118-5,  t327,  t1123,  8(I32)
+	c0    cmplt $b0.1 = $r0.40, $r0.0   ## bblock 31, line 119-6,  t1132,  t298,  0(I32)
+	c0    add $r0.31 = $r0.31, $r0.30   ## bblock 31, line 118-6,  t1140,  t64,  t304
+	c0    add $r0.7 = $r0.7, $r0.34   ## bblock 31, line 117-6,  t1152,  t46,  t299
+;;								## 14
+	c0    cmplt $b0.2 = $r0.9, $r0.0   ## bblock 31, line 119,  t1036,  t80,  0(I32)
+	c0    add $r0.29 = $r0.9, 255   ## bblock 31, line 119,  t1037,  t80,  255(I32)
+	c0    slct $r0.10 = $b0.0, $r0.10, $r0.29   ## bblock 31, line 117-1,  t1049,  t1047,  t1048,  t411
+	c0    mpyhs $r0.12 = $r0.12, $r0.11   ## bblock 31, line 119-2,  t1067,  t380,  t389
+	c0    shr $r0.19 = $r0.19, 8   ## bblock 31, line 117-3,  t368,  t1081,  8(I32)
+	c0    mpylu $r0.11 = $r0.14, $r0.13   ## bblock 31, line 119-3,  t1082,  t357,  t366
+	c0    mpyhs $r0.14 = $r0.14, $r0.13   ## bblock 31, line 119-3,  t1083,  t357,  t366
+	c0    cmplt $b0.0 = $r0.27, $r0.0   ## bblock 31, line 117-4,  t1095,  t342,  0(I32)
+	c0    add $r0.23 = $r0.27, 255   ## bblock 31, line 117-4,  t1096,  t342,  255(I32)
+	c0    shr $r0.26 = $r0.26, 8   ## bblock 31, line 118-4,  t350,  t1107,  8(I32)
+	c0    shr $r0.33 = $r0.33, 8   ## bblock 31, line 117-5,  t322,  t1113,  8(I32)
+	c0    add $r0.28 = $r0.40, 255   ## bblock 31, line 119-6,  t1133,  t298,  255(I32)
+	c0    add $r0.16 = $r0.16, $r0.41   ## bblock 31, line 118-6,  t1141,  t152,  t327
+	c0    add $r0.32 = $r0.32, $r0.35   ## bblock 31, line 118-6,  t1143,  t396,  t373
+;;								## 15
+	c0    slct $r0.29 = $b0.2, $r0.29, $r0.9   ## bblock 31, line 119,  t1038,  t1036,  t1037,  t80
+	c0    shr $r0.10 = $r0.10, 8   ## bblock 31, line 117-1,  t414,  t1049,  8(I32)
+	c0    and $r0.21 = $r0.21, 255   ## bblock 31, line 119-1,  t412,  t408,  255(I32)
+	c0    and $r0.22 = $r0.22, 255   ## bblock 31, line 119-4,  t343,  t339,  255(I32)
+	c0    slct $r0.23 = $b0.0, $r0.23, $r0.27   ## bblock 31, line 117-4,  t1097,  t1095,  t1096,  t342
+	c0    and $r0.15 = $r0.15, 255   ## bblock 31, line 119-5,  t320,  t316,  255(I32)
+	c0    slct $r0.28 = $b0.1, $r0.28, $r0.40   ## bblock 31, line 119-6,  t1134,  t1132,  t1133,  t298
+	c0    add $r0.2 = $r0.2, $r0.26   ## bblock 31, line 118-6,  t1142,  t419,  t350
+	c0    add $r0.31 = $r0.31, $r0.32   ## bblock 31, line 118-6,  t1144,  t1140,  t1143
+	c0    add $r0.17 = $r0.17, $r0.33   ## bblock 31, line 117-6,  t1153,  t153,  t322
+	c0    add $r0.36 = $r0.36, $r0.19   ## bblock 31, line 117-6,  t1155,  t391,  t368
+;;								## 16
+	c0    shr $r0.29 = $r0.29, 8   ## bblock 31, line 119,  t81,  t1038,  8(I32)
+	c0    mpylu $r0.12 = $r0.24, $r0.21   ## bblock 31, line 119-1,  t1050,  t403,  t412
+	c0    mpyhs $r0.24 = $r0.24, $r0.21   ## bblock 31, line 119-1,  t1051,  t403,  t412
+	c0    add $r0.4 = $r0.4, $r0.12   ## bblock 31, line 119-2,  t390,  t1066,  t1067
+	c0    add $r0.11 = $r0.11, $r0.14   ## bblock 31, line 119-3,  t367,  t1082,  t1083
+	c0    shr $r0.23 = $r0.23, 8   ## bblock 31, line 117-4,  t345,  t1097,  8(I32)
+	c0    mpylu $r0.13 = $r0.25, $r0.22   ## bblock 31, line 119-4,  t1098,  t334,  t343
+	c0    mpyhs $r0.25 = $r0.25, $r0.22   ## bblock 31, line 119-4,  t1099,  t334,  t343
+	c0    mpylu $r0.9 = $r0.20, $r0.15   ## bblock 31, line 119-5,  t1114,  t311,  t320
+	c0    mpyhs $r0.20 = $r0.20, $r0.15   ## bblock 31, line 119-5,  t1115,  t311,  t320
+	c0    shr $r0.28 = $r0.28, 8   ## bblock 31, line 119-6,  t300,  t1134,  8(I32)
+	c0    add $r0.16 = $r0.16, $r0.2   ## bblock 31, line 118-6,  t1145,  t1141,  t1142
+	c0    add $r0.7 = $r0.7, $r0.36   ## bblock 31, line 117-6,  t1156,  t1152,  t1155
+;;								## 17
+	c0    cmplt $b0.0 = $r0.4, $r0.0   ## bblock 31, line 119-2,  t1068,  t390,  0(I32)
+	c0    add $r0.14 = $r0.4, 255   ## bblock 31, line 119-2,  t1069,  t390,  255(I32)
+	c0    cmplt $b0.1 = $r0.11, $r0.0   ## bblock 31, line 119-3,  t1084,  t367,  0(I32)
+	c0    add $r0.15 = $r0.11, 255   ## bblock 31, line 119-3,  t1085,  t367,  255(I32)
+	c0    add $r0.16 = $r0.31, $r0.16   ## bblock 31, line 118-6,  t152,  t1144,  t1145
+	c0    add $r0.29 = $r0.29, $r0.28   ## bblock 31, line 119-6,  t1146,  t81,  t300
+	c0    add $r0.10 = $r0.10, $r0.23   ## bblock 31, line 117-6,  t1154,  t414,  t345
+;;								## 18
+	c0    add $r0.12 = $r0.12, $r0.24   ## bblock 31, line 119-1,  t413,  t1050,  t1051
+	c0    slct $r0.14 = $b0.0, $r0.14, $r0.4   ## bblock 31, line 119-2,  t1070,  t1068,  t1069,  t390
+	c0    slct $r0.15 = $b0.1, $r0.15, $r0.11   ## bblock 31, line 119-3,  t1086,  t1084,  t1085,  t367
+	c0    add $r0.13 = $r0.13, $r0.25   ## bblock 31, line 119-4,  t344,  t1098,  t1099
+	c0    add $r0.9 = $r0.9, $r0.20   ## bblock 31, line 119-5,  t321,  t1114,  t1115
+	c0    add $r0.17 = $r0.17, $r0.10   ## bblock 31, line 117-6,  t1157,  t1153,  t1154
 ;;								## 19
-	c0    slct $r0.12 = $b0.0, $r0.12, $r0.29   ## bblock 31, line 117-1,  t1049,  t1047,  t1048,  t411
-	c0    mpyhs $r0.23 = $r0.23, $r0.22   ## bblock 31, line 119-1,  t1051,  t403,  t412
-	c0    slct $r0.20 = $b0.2, $r0.20, $r0.31   ## bblock 31, line 119-2,  t1070,  t1068,  t1069,  t390
-	c0    add $r0.7 = $r0.7, $r0.14   ## bblock 31, line 119-3,  t367,  t1082,  t1083
-	c0    cmplt $b0.0 = $r0.10, $r0.0   ## bblock 31, line 117-4,  t1095,  t342,  0(I32)
-	c0    add $r0.21 = $r0.10, 255   ## bblock 31, line 117-4,  t1096,  t342,  255(I32)
-	c0    mpylu $r0.14 = $r0.25, $r0.24   ## bblock 31, line 119-4,  t1098,  t334,  t343
-	c0    mpyhs $r0.25 = $r0.25, $r0.24   ## bblock 31, line 119-4,  t1099,  t334,  t343
-	c0    shr $r0.9 = $r0.9, 8   ## bblock 31, line 117-5,  t322,  t1113,  8(I32)
-	c0    slct $r0.13 = $b0.1, $r0.13, $r0.30   ## bblock 31, line 119-6,  t1134,  t1132,  t1133,  t298
+	c0    cmplt $b0.1 = $r0.12, $r0.0   ## bblock 31, line 119-1,  t1052,  t413,  0(I32)
+	c0    add $r0.7 = $r0.12, 255   ## bblock 31, line 119-1,  t1053,  t413,  255(I32)
+	c0    shr $r0.14 = $r0.14, 8   ## bblock 31, line 119-2,  t392,  t1070,  8(I32)
+	c0    shr $r0.15 = $r0.15, 8   ## bblock 31, line 119-3,  t369,  t1086,  8(I32)
+	c0    cmplt $b0.2 = $r0.13, $r0.0   ## bblock 31, line 119-4,  t1100,  t344,  0(I32)
+	c0    add $r0.10 = $r0.13, 255   ## bblock 31, line 119-4,  t1101,  t344,  255(I32)
+	c0    cmplt $b0.0 = $r0.9, $r0.0   ## bblock 31, line 119-5,  t1116,  t321,  0(I32)
+	c0    add $r0.4 = $r0.9, 255   ## bblock 31, line 119-5,  t1117,  t321,  255(I32)
+	c0    add $r0.17 = $r0.7, $r0.17   ## bblock 31, line 117-6,  t153,  t1156,  t1157
 ;;								## 20
-	c0    shr $r0.12 = $r0.12, 8   ## bblock 31, line 117-1,  t414,  t1049,  8(I32)
-	c0    shr $r0.20 = $r0.20, 8   ## bblock 31, line 119-2,  t392,  t1070,  8(I32)
-	c0    cmplt $b0.0 = $r0.7, $r0.0   ## bblock 31, line 119-3,  t1084,  t367,  0(I32)
-	c0    add $r0.9 = $r0.7, 255   ## bblock 31, line 119-3,  t1085,  t367,  255(I32)
-	c0    slct $r0.21 = $b0.0, $r0.21, $r0.10   ## bblock 31, line 117-4,  t1097,  t1095,  t1096,  t342
-	c0    add $r0.11 = $r0.11, $r0.16   ## bblock 31, line 119-5,  t321,  t1114,  t1115
-	c0    shr $r0.13 = $r0.13, 8   ## bblock 31, line 119-6,  t300,  t1134,  8(I32)
-	c0    add $r0.18 = $r0.18, $r0.9   ## bblock 31, line 117-6,  t1153,  t153,  t322
+	c0    slct $r0.7 = $b0.1, $r0.7, $r0.12   ## bblock 31, line 119-1,  t1054,  t1052,  t1053,  t413
+	c0    slct $r0.10 = $b0.2, $r0.10, $r0.13   ## bblock 31, line 119-4,  t1102,  t1100,  t1101,  t344
+	c0    slct $r0.4 = $b0.0, $r0.4, $r0.9   ## bblock 31, line 119-5,  t1118,  t1116,  t1117,  t321
+	c0    add $r0.14 = $r0.14, $r0.15   ## bblock 31, line 119-6,  t1149,  t392,  t369
 ;;								## 21
-	c0    add $r0.15 = $r0.15, $r0.23   ## bblock 31, line 119-1,  t413,  t1050,  t1051
-	c0    slct $r0.9 = $b0.0, $r0.9, $r0.7   ## bblock 31, line 119-3,  t1086,  t1084,  t1085,  t367
-	c0    shr $r0.21 = $r0.21, 8   ## bblock 31, line 117-4,  t345,  t1097,  8(I32)
-	c0    add $r0.14 = $r0.14, $r0.25   ## bblock 31, line 119-4,  t344,  t1098,  t1099
-	c0    cmplt $b0.0 = $r0.11, $r0.0   ## bblock 31, line 119-5,  t1116,  t321,  0(I32)
-	c0    add $r0.7 = $r0.11, 255   ## bblock 31, line 119-5,  t1117,  t321,  255(I32)
-	c0    add $r0.4 = $r0.4, $r0.13   ## bblock 31, line 119-6,  t1146,  t81,  t300
+	c0    shr $r0.7 = $r0.7, 8   ## bblock 31, line 119-1,  t415,  t1054,  8(I32)
+	c0    shr $r0.10 = $r0.10, 8   ## bblock 31, line 119-4,  t346,  t1102,  8(I32)
+	c0    shr $r0.4 = $r0.4, 8   ## bblock 31, line 119-5,  t323,  t1118,  8(I32)
+	c0    add $r0.29 = $r0.29, $r0.14   ## bblock 31, line 119-6,  t1150,  t1146,  t1149
 ;;								## 22
-	c0    cmplt $b0.0 = $r0.15, $r0.0   ## bblock 31, line 119-1,  t1052,  t413,  0(I32)
-	c0    add $r0.10 = $r0.15, 255   ## bblock 31, line 119-1,  t1053,  t413,  255(I32)
-	c0    shr $r0.9 = $r0.9, 8   ## bblock 31, line 119-3,  t369,  t1086,  8(I32)
-	c0    cmplt $b0.1 = $r0.14, $r0.0   ## bblock 31, line 119-4,  t1100,  t344,  0(I32)
-	c0    add $r0.11 = $r0.14, 255   ## bblock 31, line 119-4,  t1101,  t344,  255(I32)
-	c0    slct $r0.7 = $b0.0, $r0.7, $r0.11   ## bblock 31, line 119-5,  t1118,  t1116,  t1117,  t321
-	c0    add $r0.12 = $r0.12, $r0.21   ## bblock 31, line 117-6,  t1154,  t414,  t345
+	c0    add $r0.18 = $r0.18, $r0.4   ## bblock 31, line 119-6,  t1147,  t151,  t323
+	c0    add $r0.7 = $r0.7, $r0.10   ## bblock 31, line 119-6,  t1148,  t415,  t346
 ;;								## 23
-	c0    slct $r0.10 = $b0.0, $r0.10, $r0.15   ## bblock 31, line 119-1,  t1054,  t1052,  t1053,  t413
-	c0    slct $r0.11 = $b0.1, $r0.11, $r0.14   ## bblock 31, line 119-4,  t1102,  t1100,  t1101,  t344
-	c0    shr $r0.7 = $r0.7, 8   ## bblock 31, line 119-5,  t323,  t1118,  8(I32)
-	c0    add $r0.20 = $r0.20, $r0.9   ## bblock 31, line 119-6,  t1149,  t392,  t369
-	c0    add $r0.18 = $r0.18, $r0.12   ## bblock 31, line 117-6,  t1157,  t1153,  t1154
+	c0    add $r0.18 = $r0.18, $r0.7   ## bblock 31, line 119-6,  t1151,  t1147,  t1148
 ;;								## 24
-	c0    shr $r0.10 = $r0.10, 8   ## bblock 31, line 119-1,  t415,  t1054,  8(I32)
-	c0    shr $r0.11 = $r0.11, 8   ## bblock 31, line 119-4,  t346,  t1102,  8(I32)
-	c0    add $r0.19 = $r0.19, $r0.7   ## bblock 31, line 119-6,  t1147,  t151,  t323
-	c0    add $r0.4 = $r0.4, $r0.20   ## bblock 31, line 119-6,  t1150,  t1146,  t1149
-	c0    add $r0.18 = $r0.41, $r0.18   ## bblock 31, line 117-6,  t153,  t1156,  t1157
+	c0    add $r0.18 = $r0.29, $r0.18   ## bblock 31, line 119-6,  t151,  t1150,  t1151
+	c0    ldw $r0.2 = 0x14[$r0.1]  ## restore ## t429
 ;;								## 25
-	c0    add $r0.10 = $r0.10, $r0.11   ## bblock 31, line 119-6,  t1148,  t415,  t346
-;;								## 26
-	c0    add $r0.19 = $r0.19, $r0.10   ## bblock 31, line 119-6,  t1151,  t1147,  t1148
-;;								## 27
-	c0    add $r0.19 = $r0.4, $r0.19   ## bblock 31, line 119-6,  t151,  t1150,  t1151
 	c0    goto L8?3 ## goto
-;;								## 28
+;;								## 26
 .trace 6
 L9?3:
-	c0    max $r0.19 = $r0.19, $r0.0   ## bblock 29, line 163,  t173,  t151,  0(SI32)
-	c0    max $r0.17 = $r0.17, $r0.0   ## bblock 29, line 162,  t179,  t152,  0(SI32)
-	c0    max $r0.18 = $r0.18, $r0.0   ## bblock 29, line 161,  t185,  t153,  0(SI32)
-	c0    sh2add $r0.2 = $r0.43, $r0.45   ## bblock 29, line 161,  t1027,  t443,  t473
-	c0    add $r0.4 = $r0.43, 1   ## bblock 29, line 0,  t443,  t443,  1(I32)
+	c0    max $r0.18 = $r0.18, $r0.0   ## bblock 29, line 163,  t173,  t151,  0(SI32)
+	c0    max $r0.16 = $r0.16, $r0.0   ## bblock 29, line 162,  t179,  t152,  0(SI32)
+	c0    max $r0.17 = $r0.17, $r0.0   ## bblock 29, line 161,  t185,  t153,  0(SI32)
+	c0    ldw $r0.5 = 0x1c[$r0.1]  ## restore ## t442
+	c0    ldw $r0.4 = 0x18[$r0.1]  ## restore ## t443
+	c0    ldw $r0.2 = 0x20[$r0.1]  ## restore ## t473
 ;;								## 0
-	c0    min $r0.19 = $r0.19, 255   ## bblock 29, line 163,  t83,  t173,  255(SI32)
-	c0    min $r0.17 = $r0.17, 255   ## bblock 29, line 162,  t86,  t179,  255(SI32)
-	c0    min $r0.18 = $r0.18, 255   ## bblock 29, line 161,  t90,  t185,  255(SI32)
-	c0    pft 32[$r0.2]   ## bblock 29, line 161,  t1027,  32(I32)
-	c0    add $r0.7 = $r0.44, 1   ## bblock 29, line 0,  t442,  t442,  1(I32)
+	c0    min $r0.18 = $r0.18, 255   ## bblock 29, line 163,  t83,  t173,  255(SI32)
+	c0    min $r0.16 = $r0.16, 255   ## bblock 29, line 162,  t86,  t179,  255(SI32)
+	c0    min $r0.17 = $r0.17, 255   ## bblock 29, line 161,  t90,  t185,  255(SI32)
 ;;								## 1
-	c0    shl $r0.17 = $r0.17, 8   ## bblock 29, line 163,  t89,  t86,  8(SI32)
-	c0    shl $r0.18 = $r0.18, 16   ## bblock 29, line 162,  t93,  t90,  16(SI32)
+	c0    shl $r0.16 = $r0.16, 8   ## bblock 29, line 163,  t89,  t86,  8(SI32)
+	c0    shl $r0.17 = $r0.17, 16   ## bblock 29, line 162,  t93,  t90,  16(SI32)
+	c0    sh2add $r0.2 = $r0.4, $r0.2   ## bblock 29, line 161,  t1027,  t443,  t473
+	c0    add $r0.4 = $r0.4, 1   ## bblock 29, line 0,  t443,  t443,  1(I32)
+	c0    add $r0.7 = $r0.5, 1   ## bblock 29, line 0,  t442,  t442,  1(I32)
 ;;								## 2
-	c0    or $r0.19 = $r0.19, $r0.18   ## bblock 29, line 163,  t1026,  t83,  t93
+	c0    or $r0.18 = $r0.18, $r0.17   ## bblock 29, line 163,  t1026,  t83,  t93
+	c0    pft 32[$r0.2]   ## bblock 29, line 161,  t1027,  32(I32)
 ;;								## 3
-	c0    or $r0.19 = $r0.19, $r0.17   ## bblock 29, line 163,  t94,  t1026,  t89
+	c0    or $r0.18 = $r0.18, $r0.16   ## bblock 29, line 163,  t94,  t1026,  t89
 ;;								## 4
-	c0    stw 0[$r0.2] = $r0.19   ## bblock 29, line 161, t1027, t94
+	c0    stw 0[$r0.2] = $r0.18   ## bblock 29, line 161, t1027, t94
 	c0    goto L6?3 ## goto
 ;;								## 5
 .trace 8
 L7?3:
 	c0    add $r0.3 = $r0.3, 1   ## bblock 9, line 0,  t468,  t468,  1(I32)
 	c0    add $r0.8 = $r0.8, 64   ## bblock 9, line 0,  t469,  t469,  64(I32)
-	c0    add $r0.45 = $r0.45, 256   ## bblock 9, line 0,  t473,  t473,  256(I32)
+	c0    ldw $r0.2 = 0x20[$r0.1]  ## restore ## t473
+	      xnop 1
+;;								## 1
+	c0    add $r0.2 = $r0.2, 256   ## bblock 9, line 0,  t473,  t473,  256(I32)
+;;								## 2
+	c0    stw 0x20[$r0.1] = $r0.2  ## spill ## t473
 	c0    goto L4?3 ## goto
-;;								## 0
+;;								## 3
 .trace 9
 L5?3:
 .call puts, caller, arg($r0.3:u32), ret()
@@ -503,9 +525,19 @@ L5?3:
 	c0    ldw $l0.0 = 0x10[$r0.1]  ## restore ## t128
 	      xnop 1
 ;;								## 2
-.return ret($r0.3:s32)
-	c0    return $r0.1 = $r0.1, (0x20), $l0.0   ## bblock 6, line 173,  t129,  ?2.4?2auto_size(I32),  t128
+	c0    ldw $r0.57 = 0x24[$r0.1]  ## restore ## t132
+	c0    ldw $r0.58 = 0x28[$r0.1]  ## restore ## t133
+	c0    ldw $r0.59 = 0x2c[$r0.1]  ## restore ## t134
 ;;								## 3
+	c0    ldw $r0.60 = 0x30[$r0.1]  ## restore ## t135
+	c0    ldw $r0.61 = 0x34[$r0.1]  ## restore ## t136
+	c0    ldw $r0.62 = 0x38[$r0.1]  ## restore ## t137
+;;								## 4
+	c0    ldw $r0.63 = 0x3c[$r0.1]  ## restore ## t138
+;;								## 5
+.return ret($r0.3:s32)
+	c0    return $r0.1 = $r0.1, (0x40), $l0.0   ## bblock 6, line 173,  t129,  ?2.4?2auto_size(I32),  t128
+;;								## 6
 .endp
 .section .bss
 .section .data
@@ -538,9 +570,10 @@ _?1STRINGPACKET.1:
     .data1 0
 .equ ?2.4?2scratch.0, 0x0
 .equ ?2.4?2ras_p, 0x10
+.equ ?2.4?2spill_p, 0x14
 .section .data
 .section .text
-.equ ?2.4?2auto_size, 0x20
+.equ ?2.4?2auto_size, 0x40
  ## End main
 .section .bss
 .section .data
