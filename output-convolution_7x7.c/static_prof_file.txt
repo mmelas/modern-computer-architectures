@@ -28,8 +28,8 @@ operation: 	LDH	 n. times: 	0
 operation: 	LDHU	 n. times: 	0
 operation: 	LDHUs	 n. times: 	0
 operation: 	LDHs	 n. times: 	0
-operation: 	LDW	 n. times: 	16
-operation: 	LDWs	 n. times: 	0
+operation: 	LDW	 n. times: 	15
+operation: 	LDWs	 n. times: 	1
 operation: 	MAX	 n. times: 	3
 operation: 	MAXU	 n. times: 	0
 operation: 	MFB	 n. times: 	0

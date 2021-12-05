@@ -94,9 +94,10 @@ class FindOptimizedConfiguration(Annealer):
 
         area = self.state[4] * 3273 + self.state[5] * 40614 + self.state[1] * 1500 + self.state[2] * 1500 + ((26388/64) * self.state[7] * (self.state[0] / 4) ** 2) + ((258/8) * self.state[8] * (self.state[0] / 4)**2) + (self.state[1] + self.state[2] + self.state[3]) * 1000
 
-        norm_exec_cycles = ((exec_cycles_conv - 56522.98) / (28749792 - 56522.98)) * 100
+        alpha = 10
+        norm_exec_cycles = ((exec_cycles_conv - 483601) / (3263662 - 483601)) * 100
         norm_area = ((area - 56522.98) / (28749792 - 56522.98)) * 100
-        norm_product_conv = (1.5 * norm_exec_cycles) * norm_area
+        norm_product_conv = norm_exec_cycles * norm_area + norm_area * alpha
 
         #run greyscale
         process = subprocess.Popen("run greyscale -O4", stdout=subprocess.PIPE, shell=True, executable="/bin/bash")
@@ -110,9 +111,9 @@ class FindOptimizedConfiguration(Annealer):
                     break
 
         #change min-max values
-        norm_exec_cycles = ((exec_cycles_grey - 4952) / (28749792 - 4952)) * 100
-        norm_area = ((area - 4952) / (28749792 - 4952)) * 100
-        norm_product_grey = (1.5 * norm_exec_cycles) * norm_area
+        norm_exec_cycles = ((exec_cycles_grey - 4952) / (18911 - 4952)) * 100
+        norm_area = ((area - 56522.98) / (28749792 - 56522.98)) * 100
+        norm_product_grey = norm_exec_cycles * norm_area + norm_area * alpha
 
 
         self.global_states.append(self.state.copy())
@@ -134,7 +135,7 @@ if __name__ == '__main__':
 
     ca = FindOptimizedConfiguration(init_state)
 #       ca.set_schedule(ca.auto(minutes=0.2, steps=1))
-    ca.set_schedule({"updates":50, "tmax":25000, "tmin":2.5, "steps":50})
+    ca.set_schedule({"updates":1000, "tmax":25000, "tmin":2.5, "steps":1000})
     ca.copy_strategy = "slice"
     state, e = ca.anneal()
 

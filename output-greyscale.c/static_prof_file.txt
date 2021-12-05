@@ -28,7 +28,7 @@ operation: 	LDH	 n. times: 	0
 operation: 	LDHU	 n. times: 	0
 operation: 	LDHUs	 n. times: 	0
 operation: 	LDHs	 n. times: 	0
-operation: 	LDW	 n. times: 	34
+operation: 	LDW	 n. times: 	38
 operation: 	LDWs	 n. times: 	2
 operation: 	MAX	 n. times: 	64
 operation: 	MAXU	 n. times: 	0
@@ -83,7 +83,7 @@ operation: 	SLCT	 n. times: 	0
 operation: 	SLCTF	 n. times: 	0
 operation: 	STB	 n. times: 	0
 operation: 	STH	 n. times: 	0
-operation: 	STW	 n. times: 	68
+operation: 	STW	 n. times: 	72
 operation: 	SUB	 n. times: 	0
 operation: 	SXTB	 n. times: 	0
 operation: 	SXTH	 n. times: 	0

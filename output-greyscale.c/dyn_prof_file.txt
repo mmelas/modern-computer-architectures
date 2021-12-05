@@ -1,4 +1,4 @@
-operation:  	ADD	 n. times: 	834 
+operation:  	ADD	 n. times: 	898 
 operation:  	ADDCG	 n. times: 	0 
 operation:  	AND	 n. times: 	12288 
 operation:  	ANDC	 n. times: 	0 
@@ -28,7 +28,7 @@ operation:  	LDH	 n. times: 	0
 operation:  	LDHU	 n. times: 	0 
 operation:  	LDHUs	 n. times: 	0 
 operation:  	LDHs	 n. times: 	0 
-operation:  	LDW	 n. times: 	3844 
+operation:  	LDW	 n. times: 	3848 
 operation:  	LDWs	 n. times: 	384 
 operation:  	MAX	 n. times: 	8192 
 operation:  	MAXU	 n. times: 	0 
@@ -36,7 +36,7 @@ operation:  	MFB	 n. times: 	0
 operation:  	MFL	 n. times: 	0 
 operation:  	MIN	 n. times: 	0 
 operation:  	MINU	 n. times: 	0 
-operation:  	MOV	 n. times: 	394 
+operation:  	MOV	 n. times: 	398 
 operation:  	MPYH	 n. times: 	0 
 operation:  	MPYHH	 n. times: 	0 
 operation:  	MPYHHU	 n. times: 	0 
@@ -83,7 +83,7 @@ operation:  	SLCT	 n. times: 	0
 operation:  	SLCTF	 n. times: 	0 
 operation:  	STB	 n. times: 	0 
 operation:  	STH	 n. times: 	0 
-operation:  	STW	 n. times: 	8196 
+operation:  	STW	 n. times: 	8200 
 operation:  	SUB	 n. times: 	0 
 operation:  	SXTB	 n. times: 	0 
 operation:  	SXTH	 n. times: 	0 
